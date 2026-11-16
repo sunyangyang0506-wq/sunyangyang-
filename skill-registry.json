@@ -1,0 +1,36 @@
+{
+  "repository_version": "3.4.0",
+  "updated_at": "2026-11-16",
+  "skills": [
+    {
+      "name": "xiaohongshu-alive-writer",
+      "version": "3.4.0",
+      "path": "skills/xiaohongshu-alive-writer/SKILL.md",
+      "status": "active"
+    },
+    {
+      "name": "alive-oral-scriptwriter",
+      "version": "3.3.0",
+      "path": "skills/alive-oral-scriptwriter/SKILL.md",
+      "status": "active"
+    },
+    {
+      "name": "personal-visual-storyteller",
+      "version": "3.3.0",
+      "path": "skills/personal-visual-storyteller/SKILL.md",
+      "status": "active"
+    },
+    {
+      "name": "douyin-persona-audit",
+      "version": "1.2.0",
+      "path": "skills/douyin-persona-audit/SKILL.md",
+      "status": "active"
+    },
+    {
+      "name": "xiaohongshu-publish-orchestrator",
+      "version": "1.0.0",
+      "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
+      "status": "active"
+    }
+  ]
+}
