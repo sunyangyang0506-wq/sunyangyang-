@@ -1,0 +1,19 @@
+{
+  "skill": "douyin-persona-audit",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {"name": "account_ownership", "required": true, "description": "用户明确确认目标抖音账号属于本人。"},
+    {"name": "accessible_works", "required": true, "description": "平台许可和当前权限范围内可访问的作品集合。"}
+  ],
+  "outputs": [
+    {"name": "work_ledger", "description": "按作品记录可访问性、原声、时间戳和互动数据的台账。"},
+    {"name": "persona_evidence", "description": "A/B/C等级的表达特征证据及反证。"},
+    {"name": "skill_feedback", "description": "用于校准其他内容Skill的稳定证据。"}
+  ],
+  "hard_guards": [
+    "未访问视频不得声称已经看完账号",
+    "未听原声不得报告真实语速、音色或停顿",
+    "未读取评论不得总结评论高频词或互动原因",
+    "无法证明完整作品总数时不得声称100%覆盖"
+  ]
+}

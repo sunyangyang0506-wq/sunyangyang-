@@ -1,0 +1,22 @@
+{
+  "skill": "xiaohongshu-publish-orchestrator",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {"name": "approved_content", "required": true, "description": "已完成事实核验和内容确认的标题、正文及来源。"},
+    {"name": "media_assets", "required": true, "description": "最终待发布的图片或视频素材。"},
+    {"name": "publish_authorization", "required": true, "description": "本次或持续发布授权状态。"},
+    {"name": "channel_state", "required": true, "description": "发布通道、登录、二次验证及权限状态。"}
+  ],
+  "outputs": [
+    {"name": "publish_checklist", "description": "标题、正文、图片、事实、隐私、重复与通道状态检查。"},
+    {"name": "publish_status", "description": "READY_TO_PUBLISH、PUBLISHED、PUBLISH_FAILED等状态。"},
+    {"name": "receipt", "description": "成功时记录发布时间、note_id和公开链接等真实回执。"}
+  ],
+  "hard_guards": [
+    "没有明确发布授权不得自动发布",
+    "没有可用且已登录的发布通道不得声称已发布",
+    "没有真实回执不得推断发布成功",
+    "发布失败后不得无限自动重试",
+    "同一日报同一天默认阻止重复发布"
+  ]
+}

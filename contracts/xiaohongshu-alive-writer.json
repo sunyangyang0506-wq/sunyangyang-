@@ -1,0 +1,21 @@
+{
+  "skill": "xiaohongshu-alive-writer",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {"name": "source_material", "required": true, "description": "用户提供的语音转写、文字、研究资料或已核实资讯。"},
+    {"name": "mode", "required": false, "description": "观点故事、资讯搬运、简报或口播包装模式。"},
+    {"name": "platform_goal", "required": false, "description": "小红书图文、资讯卡片或口播等目标形态。"}
+  ],
+  "outputs": [
+    {"name": "title", "description": "主标题，必要时附备选标题。"},
+    {"name": "body", "description": "可直接使用的小红书正文。"},
+    {"name": "topics", "description": "与正文真实相关的话题标签。"},
+    {"name": "publish_package", "description": "摘要、封面/信息卡方案与发布检查项。"}
+  ],
+  "hard_guards": [
+    "不得虚构用户亲历或私人经历",
+    "不得编造日期、数字、来源、热搜和时效信息",
+    "资讯类必须区分事实、分析、未知项",
+    "发布授权与内容生成授权必须分离"
+  ]
+}

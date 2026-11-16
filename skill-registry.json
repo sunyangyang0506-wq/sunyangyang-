@@ -1,35 +1,41 @@
 {
-  "repository_version": "3.4.0",
+  "repository_version": "3.5.0",
+  "schema_version": "1.0.0",
   "updated_at": "2026-11-16",
   "skills": [
     {
       "name": "xiaohongshu-alive-writer",
       "version": "3.4.0",
       "path": "skills/xiaohongshu-alive-writer/SKILL.md",
+      "contract": "contracts/xiaohongshu-alive-writer.json",
       "status": "active"
     },
     {
       "name": "alive-oral-scriptwriter",
       "version": "3.3.0",
       "path": "skills/alive-oral-scriptwriter/SKILL.md",
+      "contract": "contracts/alive-oral-scriptwriter.json",
       "status": "active"
     },
     {
       "name": "personal-visual-storyteller",
       "version": "3.3.0",
       "path": "skills/personal-visual-storyteller/SKILL.md",
+      "contract": "contracts/personal-visual-storyteller.json",
       "status": "active"
     },
     {
       "name": "douyin-persona-audit",
       "version": "1.2.0",
       "path": "skills/douyin-persona-audit/SKILL.md",
+      "contract": "contracts/douyin-persona-audit.json",
       "status": "active"
     },
     {
       "name": "xiaohongshu-publish-orchestrator",
       "version": "1.0.0",
       "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
+      "contract": "contracts/xiaohongshu-publish-orchestrator.json",
       "status": "active"
     }
   ]

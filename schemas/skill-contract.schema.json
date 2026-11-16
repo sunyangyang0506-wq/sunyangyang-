@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "contract_version", "inputs", "outputs", "hard_guards"],
+  "properties": {
+    "skill": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "contract_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "inputs": {"type": "array", "minItems": 1},
+    "outputs": {"type": "array", "minItems": 1},
+    "hard_guards": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "alive-oral-scriptwriter",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {"name": "source_material", "required": true, "description": "语音转写、零散想法、长文或已核实资讯。"},
+    {"name": "target_duration", "required": false, "description": "期望口播时长。"},
+    {"name": "mode", "required": false, "description": "生活观察、经营判断或资讯播报。"}
+  ],
+  "outputs": [
+    {"name": "script", "description": "可直接面对镜头念出的纯口播稿。"},
+    {"name": "title", "description": "可选的口播标题。"}
+  ],
+  "hard_guards": [
+    "不得把助手旧稿当作用户原话",
+    "不得虚构用户经历、关系、功绩或私人事实",
+    "未听取真实音频时不得声称复刻用户真实音色或语速",
+    "资讯播报必须保留来源和时间边界"
+  ]
+}

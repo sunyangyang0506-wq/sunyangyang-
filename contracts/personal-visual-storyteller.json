@@ -1,0 +1,20 @@
+{
+  "skill": "personal-visual-storyteller",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {"name": "content_brief", "required": true, "description": "需要视觉化的文稿、口播或内容目标。"},
+    {"name": "authorized_media", "required": false, "description": "用户明确授权可用于当前任务的本人照片或视频。"},
+    {"name": "target_format", "required": false, "description": "封面、配图、信息卡、分镜或视频素材。"}
+  ],
+  "outputs": [
+    {"name": "visual_plan", "description": "素材选择、构图、用途、情绪和AI编辑说明。"},
+    {"name": "media_assets", "description": "生成或编辑后的视觉素材。"},
+    {"name": "approval_checklist", "description": "人物身份、隐私、版本和平台校验清单。"}
+  ],
+  "hard_guards": [
+    "没有真实参考影像时不得生成并冒称用户本人的人物",
+    "多人照片不得默认识别谁是用户本人",
+    "素材读取权限不等于发布权限",
+    "发布前必须检查他人影像和背景隐私"
+  ]
+}
