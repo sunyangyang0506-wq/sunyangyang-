@@ -1,0 +1,26 @@
+# Private user evidence and platform credentials
+shared/private/
+**/private/
+*.session
+*.cookie
+*.cookies
+*.token
+.env
+.env.*
+
+# Local media / exports
+media/
+exports/
+*.mp4
+*.mov
+*.m4a
+*.mp3
+*.wav
+*.jpg
+*.jpeg
+*.png
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
