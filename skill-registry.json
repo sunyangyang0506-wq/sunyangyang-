@@ -1,6 +1,6 @@
 {
-  "repository_version": "3.5.0",
-  "schema_version": "1.0.0",
+  "repository_version": "3.6.0",
+  "schema_version": "1.1.0",
   "updated_at": "2026-11-16",
   "skills": [
     {
@@ -8,6 +8,8 @@
       "version": "3.4.0",
       "path": "skills/xiaohongshu-alive-writer/SKILL.md",
       "contract": "contracts/xiaohongshu-alive-writer.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [],
       "status": "active"
     },
     {
@@ -15,6 +17,8 @@
       "version": "3.3.0",
       "path": "skills/alive-oral-scriptwriter/SKILL.md",
       "contract": "contracts/alive-oral-scriptwriter.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [],
       "status": "active"
     },
     {
@@ -22,6 +26,8 @@
       "version": "3.3.0",
       "path": "skills/personal-visual-storyteller/SKILL.md",
       "contract": "contracts/personal-visual-storyteller.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [],
       "status": "active"
     },
     {
@@ -29,6 +35,12 @@
       "version": "1.2.0",
       "path": "skills/douyin-persona-audit/SKILL.md",
       "contract": "contracts/douyin-persona-audit.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [
+        "shared/douyin-full-account-protocol.md",
+        "shared/douyin-work-ledger-template.csv",
+        "shared/persona-evidence.example.md"
+      ],
       "status": "active"
     },
     {
@@ -36,6 +48,8 @@
       "version": "1.0.0",
       "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
       "contract": "contracts/xiaohongshu-publish-orchestrator.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [],
       "status": "active"
     }
   ]

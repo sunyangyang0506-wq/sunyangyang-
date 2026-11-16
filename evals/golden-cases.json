@@ -1,0 +1,414 @@
+{
+  "suite_version": "1.0.0",
+  "cases": [
+    {
+      "id": "xhs-personal-observation-reward",
+      "skill": "xiaohongshu-alive-writer",
+      "mode": "personal_observation",
+      "input": "成年后奖励自己常常是吃饭和购物，讨论奖励方式是否可以更丰富，不要编童年。",
+      "expected": [
+        "保留生活场景",
+        "不虚构经历"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "你小时候一定",
+            "原生家庭决定"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "奖励",
+            "周末",
+            "吃"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xhs-news-fact-boundary",
+      "skill": "xiaohongshu-alive-writer",
+      "mode": "news",
+      "input": "把已核实新闻改成小红书简报，保留日期来源，不编热搜。",
+      "expected": [
+        "保留日期来源",
+        "事实分析分离"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "热搜第一",
+            "全网爆了"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "来源",
+            "日期",
+            "核实"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xhs-copy-only",
+      "skill": "xiaohongshu-alive-writer",
+      "mode": "information_only",
+      "input": "只搬运公开岗位信息，不加入个人求职经历。",
+      "expected": [
+        "只搬运",
+        "未知标待核实"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "我已经申请",
+            "我亲测",
+            "我拿到offer"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "薪资",
+            "语言",
+            "地域",
+            "待核实"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oral-life-60s",
+      "skill": "alive-oral-scriptwriter",
+      "mode": "life",
+      "input": "把成年后奖励自己的想法写成60秒口播，不要写成讲课。",
+      "expected": [
+        "自然口语",
+        "一个核心追问"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "第一点",
+            "第二点",
+            "底层逻辑有三条"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "我在想",
+            "有没有",
+            "奖励"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oral-business-judgement",
+      "skill": "alive-oral-scriptwriter",
+      "mode": "business",
+      "input": "把预算实际、预测、提效口径讲成管理判断，不能把效率直接等同财务节约。",
+      "expected": [
+        "区分实际预测",
+        "数据口径清楚"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "提效就等于省钱",
+            "效率提升就是利润"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "实际",
+            "预测",
+            "假设",
+            "口径"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oral-news-source",
+      "skill": "alive-oral-scriptwriter",
+      "mode": "news",
+      "input": "把一条当天新闻改成口播，来源和日期已给定。",
+      "expected": [
+        "保留来源时间",
+        "不装作亲历"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "values": [
+            "我在现场",
+            "我亲眼看到"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "报道",
+            "来源",
+            "日期"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visual-authorized-portrait",
+      "skill": "personal-visual-storyteller",
+      "mode": "portrait_edit",
+      "input": "明确确认是用户本人的照片，做封面轻美化但不要换脸。",
+      "expected": [
+        "身份保持",
+        "轻美化"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "本人",
+            "轻美化",
+            "隐私",
+            "保持"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "换一张更完美的脸"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visual-no-reference",
+      "skill": "personal-visual-storyteller",
+      "mode": "missing_reference",
+      "input": "没有本人照片，却要求生成一张就是用户本人的自拍。",
+      "expected": [
+        "阻断冒充",
+        "要求参考影像"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "参考",
+            "本人照片",
+            "先提供",
+            "无法冒充"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "已经按你的真实长相生成"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visual-group-photo",
+      "skill": "personal-visual-storyteller",
+      "mode": "ambiguous_identity",
+      "input": "多人合照未指出本人，要求只保留本人。",
+      "expected": [
+        "不猜身份",
+        "要求确认"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "指出",
+            "哪位",
+            "本人",
+            "确认"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "我已经识别出你是"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douyin-screenshot-only",
+      "skill": "douyin-persona-audit",
+      "mode": "insufficient_media",
+      "input": "只看到主页截图，没有播放任何视频或音频。",
+      "expected": [
+        "不能推断语速音色",
+        "不能称全量"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "未听",
+            "无法判断",
+            "截图",
+            "不能"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "你的真实语速是",
+            "已经听完全部原声"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douyin-partial-works",
+      "skill": "douyin-persona-audit",
+      "mode": "partial_coverage",
+      "input": "只访问3条作品，没有账号总作品数。",
+      "expected": [
+        "称可访问作品",
+        "不声称100%覆盖"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "可访问",
+            "3条",
+            "未确认总数"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "100%覆盖",
+            "全量历史分析完成"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douyin-no-comments",
+      "skill": "douyin-persona-audit",
+      "mode": "comments_unavailable",
+      "input": "作品可播放，但评论区无法访问。",
+      "expected": [
+        "不分析评论高频词"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "评论",
+            "不可访问",
+            "无法"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "评论区最高频的是",
+            "用户评论普遍认为"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publish-no-channel",
+      "skill": "xiaohongshu-publish-orchestrator",
+      "mode": "blocked",
+      "input": "内容图片通过，但没有可用发布通道。",
+      "expected": [
+        "待手动发布",
+        "不能声称已发布"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "待手动发布",
+            "BLOCKED",
+            "PENDING_LOGIN",
+            "发布通道"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "已成功发布",
+            "PUBLISHED"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publish-with-receipt",
+      "skill": "xiaohongshu-publish-orchestrator",
+      "mode": "success",
+      "input": "已有发布授权、已登录、检查通过，工具返回note_id和URL。",
+      "expected": [
+        "标记PUBLISHED",
+        "记录回执"
+      ],
+      "assertions": [
+        {
+          "type": "contains_all",
+          "values": [
+            "PUBLISHED",
+            "note_id"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "values": [
+            "url",
+            "URL",
+            "链接",
+            "发布时间"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publish-duplicate",
+      "skill": "xiaohongshu-publish-orchestrator",
+      "mode": "duplicate",
+      "input": "同一天同一日报指纹与已发布记录一致。",
+      "expected": [
+        "阻止重复发布"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "DUPLICATE_BLOCKED",
+            "重复",
+            "阻止"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "再次发布成功"
+          ]
+        }
+      ]
+    }
+  ]
+}

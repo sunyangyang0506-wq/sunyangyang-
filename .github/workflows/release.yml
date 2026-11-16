@@ -1,0 +1,25 @@
+name: release-skills
+on:
+  push:
+    tags: ["v*.*.*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate
+        run: |
+          python scripts/validate_skills.py
+          python scripts/eval_golden.py --validate-only
+          python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Package
+        run: python scripts/package_release.py --output dist
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --title "$GITHUB_REF_NAME" --generate-notes

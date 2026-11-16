@@ -1,26 +1,22 @@
 # Changelog
 
-## 3.5.0 - 2026-11-16
-
+## 3.6.0 - 2026-11-16
 ### Added
-- Skill metadata / contract Schema
-- 5个Skill输入输出契约
-- 仓库校验脚本
-- Skill安装脚本
-- 代码量统计脚本
-- 单元测试
-- GitHub Actions CI
-- Makefile
-- CONTRIBUTING / VERSIONING
-
+- 15个Golden Cases
+- Golden Eval Runner与candidate断言评测
+- 一键全部安装、检查更新、升级
+- 安装时携带Contract与Shared Dependencies
+- Release打包器与SHA256
+- Tag驱动GitHub Release
+- V3.6回归测试
+- Evaluation / Release文档
 ### Changed
-- Registry增加schema_version与contract路径
-- README增加安装、测试和CI说明
+- Registry增加evals与shared_dependencies
+- CI增加Golden Eval与Package dry-run
+- Repository版本升级到3.6.0
+
+## 3.5.0 - 2026-11-16
+- Schema、Contract、Validator、Installer、Tests、CI。
 
 ## 3.4.0 - 2026-11-16
-
-### Added
-- 标准 `skills/<name>/SKILL.md` 布局
-- 小红书发布编排Skill
-- 抖音证据审计Skill
-- Persona Evidence模板与工作台账
+- 标准skills目录、小红书发布编排、抖音证据审计。
