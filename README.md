@@ -1,47 +1,91 @@
-# Personal Content Skills
+# Skills Repository
 
-一组面向中文个人内容创作的可安装 Skill，覆盖：
+这是一个独立维护的个人/业务 AI Skill 仓库。
 
-- `xiaohongshu-alive-writer`：小红书图文/资讯搬运/口播包装，强调真实表达、事实核验和去 AI 味。
-- `alive-oral-scriptwriter`：30 秒至 5 分钟口播稿，强调自然口语、思考过程和时长控制。
-- `personal-visual-storyteller`：本人真实素材优先的封面、配图、分镜与视频视觉方案。
-- `douyin-persona-audit`：在用户授权和平台允许范围内，对本人抖音作品做证据化表达审计。
-- `xiaohongshu-publish-orchestrator`：把已完成内容编排成小红书发布包，执行发布前校验；只有在明确授权且存在可用发布通道时才发布。
+## 当前 Skills
 
-## 核心原则
+| Skill | Version | 用途 |
+|---|---:|---|
+| `xiaohongshu-alive-writer` | 3.4.0 | 小红书图文、资讯简报、标题/标签与发布包 |
+| `alive-oral-scriptwriter` | 3.3.0 | 30秒–5分钟自然口播稿 |
+| `personal-visual-storyteller` | 3.3.0 | 真人授权素材的封面、配图、分镜与视觉处理 |
+| `douyin-persona-audit` | 1.2.0 | 抖音作品证据化表达审计 |
+| `xiaohongshu-publish-orchestrator` | 1.0.0 | 小红书发布检查、权限门禁、防重复与发布回执 |
 
-1. **真实优先**：不虚构用户经历、数据、来源、热搜或个人画像。
-2. **事实与判断分离**：资讯内容必须保留时间、来源和未知项。
-3. **读取权限与发布权限分离**：能访问素材不等于可以公开发布。
-4. **个人证据私有**：账号 ID、短链、本人照片观察、私密人设证据不进入公共仓库。
-5. **发布可回溯**：发布成功记录时间、平台、笔记链接/ID；失败保留素材，不自动重复发。
-
-## 目录
+## 仓库规范
 
 ```text
-personal-content-skills/
-├── xiaohongshu-alive-writer/
-│   └── SKILL.md
-├── alive-oral-scriptwriter/
-│   └── SKILL.md
-├── personal-visual-storyteller/
-│   └── SKILL.md
-├── douyin-persona-audit/
-│   └── SKILL.md
-├── xiaohongshu-publish-orchestrator/
-│   └── SKILL.md
+.
+├── skills/
+│   ├── <skill-name>/
+│   │   └── SKILL.md
 ├── shared/
-│   ├── douyin-full-account-protocol.md
-│   ├── douyin-work-ledger-template.csv
-│   └── persona-evidence.example.md
-└── examples/
-    └── reward-script-validation.md
+│   ├── common protocols / templates
+├── examples/
+│   └── validation cases
+├── skill-registry.json
+└── README.md
 ```
 
-## 版本
+### 安装单元
 
-Public-safe source package: **V3.4**.
+每个 `skills/<skill-name>/` 都是独立 Skill 单元，入口固定为：
 
-V3.4 在 V3.3 基础上新增小红书发布编排 Skill，并把个人账号凭据、本人素材证据从公共代码中剥离。
+```text
+skills/<skill-name>/SKILL.md
+```
 
-> 私有运行时证据建议保存在 `shared/private/` 或外部私有存储中；该目录已加入 `.gitignore`。
+需要共享协议时由 Skill 显式引用 `shared/`。
+
+## 版本管理
+
+- Skill 自己维护 `version`。
+- 仓库维护 `skill-registry.json` 作为索引。
+- 行为发生变化时升级 Skill 版本。
+- 仅文案、注释、示例修订可按 patch 处理。
+- 重大工作流或输入输出协议变化按 minor/major 升级。
+
+## 隐私边界
+
+该仓库当前为 **public**，因此：
+
+- 不提交账号ID、短链、Cookie、Token、验证码。
+- 不提交本人照片、人像观察、真实私密 Persona Evidence。
+- 不提交未授权的内部工作资料。
+- 私有运行时数据放在 `shared/private/` 或外部私有存储。
+- `.gitignore` 已屏蔽常见私密目录和媒体文件。
+
+## 当前协作链
+
+```text
+想法 / 语音 / 资讯
+        ↓
+xiaohongshu-alive-writer
+        ↓
+alive-oral-scriptwriter（需要口播时）
+        ↓
+personal-visual-storyteller（需要视觉时）
+        ↓
+xiaohongshu-publish-orchestrator
+        ↓
+发布 / 待手动发布 / 失败回执
+```
+
+抖音历史作品的真实表达校准由：
+
+```text
+douyin-persona-audit
+        ↓
+证据化反馈到 writer / oral / visual skills
+```
+
+## 当前版本
+
+Repository: **V3.4**
+
+本版本完成：
+- 独立 Skill 仓库标准化；
+- `skills/<name>/SKILL.md` 目录规范；
+- 小红书发布编排 Skill；
+- 抖音证据审计协议；
+- 公共和私人 Persona Evidence 分离。
