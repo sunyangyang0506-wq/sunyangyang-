@@ -1,0 +1,13 @@
+interface:
+  display_name: 个人想法与知识沉淀
+  short_description: 主动提炼想法价值、记录思路演变与执行反馈，形成可追溯知识资产
+  default_prompt: 使用 $build-personal-knowledge 整理可访问对话中的新想法、判断变化和执行结果，生成结构化知识与关系图，并按已配置目标归档。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
