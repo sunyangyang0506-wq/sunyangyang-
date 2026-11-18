@@ -1,0 +1,60 @@
+{
+  "source": "training",
+  "items": [
+    {
+      "item": "m1",
+      "role": "user",
+      "kind": "idea",
+      "statement": "让预约记录可以离线查找。",
+      "title": "离线查询",
+      "topic": "booking",
+      "level": "original",
+      "locator": "fixture/m1",
+      "sensitivity": "ordinary"
+    },
+    {
+      "item": "m2",
+      "role": "assistant",
+      "kind": "proposal",
+      "statement": "建议每个场地建立一个索引。",
+      "title": "索引建议",
+      "topic": "booking",
+      "level": "original",
+      "locator": "fixture/m2",
+      "sensitivity": "ordinary"
+    },
+    {
+      "item": "m3",
+      "role": "user",
+      "kind": "revision",
+      "statement": "调整为先按日期查找，再选场地。",
+      "title": "调整查询顺序",
+      "topic": "booking",
+      "level": "original",
+      "locator": "fixture/m3",
+      "sensitivity": "ordinary"
+    },
+    {
+      "item": "m4",
+      "role": "tool",
+      "kind": "verification",
+      "statement": "合成样本中日期筛选用例通过。",
+      "title": "日期筛选结果",
+      "topic": "booking",
+      "level": "receipt",
+      "locator": "fixture/m4",
+      "sensitivity": "ordinary"
+    },
+    {
+      "item": "m5",
+      "role": "user",
+      "kind": "idea",
+      "statement": "曾有人提到按人数查找。",
+      "title": "待核想法",
+      "topic": "booking",
+      "level": "summary",
+      "locator": "fixture/m5",
+      "sensitivity": "ordinary"
+    }
+  ]
+}

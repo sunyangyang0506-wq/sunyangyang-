@@ -1,0 +1,24 @@
+{
+  "sources": {
+    "training": {
+      "read": true,
+      "store": true,
+      "sync": true,
+      "topics": [
+        "booking"
+      ],
+      "inputs": [
+        [
+          "chatgpt",
+          "fixture-chat",
+          "booking"
+        ],
+        [
+          "codex",
+          "fixture-run",
+          "booking"
+        ]
+      ]
+    }
+  }
+}
