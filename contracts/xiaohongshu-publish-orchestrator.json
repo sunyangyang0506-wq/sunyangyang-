@@ -1,16 +1,50 @@
 {
   "skill": "xiaohongshu-publish-orchestrator",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "inputs": [
-    {"name": "approved_content", "required": true, "description": "已完成事实核验和内容确认的标题、正文及来源。"},
-    {"name": "media_assets", "required": true, "description": "最终待发布的图片或视频素材。"},
-    {"name": "publish_authorization", "required": true, "description": "本次或持续发布授权状态。"},
-    {"name": "channel_state", "required": true, "description": "发布通道、登录、二次验证及权限状态。"}
+    {
+      "name": "editorial_brief",
+      "required": false,
+      "description": "栏目方向、选题或素材，和已有成稿至少提供一种。"
+    },
+    {
+      "name": "approved_content",
+      "required": false,
+      "description": "已完成事实核验和内容确认的标题、正文及来源。"
+    },
+    {
+      "name": "media_assets",
+      "required": false,
+      "description": "最终待发布的图片或视频素材。"
+    },
+    {
+      "name": "publish_authorization",
+      "required": false,
+      "description": "本次或持续发布授权状态。"
+    },
+    {
+      "name": "channel_state",
+      "required": false,
+      "description": "发布通道、登录、二次验证及权限状态。"
+    }
   ],
   "outputs": [
-    {"name": "publish_checklist", "description": "标题、正文、图片、事实、隐私、重复与通道状态检查。"},
-    {"name": "publish_status", "description": "READY_TO_PUBLISH、PUBLISHED、PUBLISH_FAILED等状态。"},
-    {"name": "receipt", "description": "成功时记录发布时间、note_id和公开链接等真实回执。"}
+    {
+      "name": "publish_checklist",
+      "description": "标题、正文、图片、事实、隐私、重复与通道状态检查。"
+    },
+    {
+      "name": "publish_status",
+      "description": "分别记录准备、草稿、预约、审核中、已公开、待核验、受阻或失败。"
+    },
+    {
+      "name": "receipt",
+      "description": "成功时记录发布时间、note_id和公开链接等真实回执。"
+    },
+    {
+      "name": "publish_package",
+      "description": "可回读的正文与媒体、顺序、版本及校验值。"
+    }
   ],
   "hard_guards": [
     "没有明确发布授权不得自动发布",

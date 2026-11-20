@@ -8,7 +8,7 @@
 - alive-oral-scriptwriter 3.3.0
 - personal-visual-storyteller 3.3.0
 - douyin-persona-audit 1.2.0
-- xiaohongshu-publish-orchestrator 1.0.0
+- xiaohongshu-publish-orchestrator 1.1.0
 
 ## 当前工程能力
 
