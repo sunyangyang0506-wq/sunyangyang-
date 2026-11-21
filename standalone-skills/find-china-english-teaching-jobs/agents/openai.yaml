@@ -1,0 +1,14 @@
+interface:
+  display_name: Teach English in China or Online
+  short_description: Find teaching jobs in China or online from abroad
+  default_prompt: Use $find-china-english-teaching-jobs to match me with English teaching
+    opportunities in China or online from abroad and build my daily brief.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
