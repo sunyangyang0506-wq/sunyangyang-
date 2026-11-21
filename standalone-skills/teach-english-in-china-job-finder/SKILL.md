@@ -1,9 +1,13 @@
 ---
-name: find-china-english-teaching-jobs
-description: Find paid English teaching opportunities for English speakers who want to teach online from abroad with a China-linked provider or teach in person in mainland China. Use for ESL job searches, English teacher vacancies, application links, and English daily job briefs, including requests phrased in Chinese such as 来华教英语、海外远程教英语 or 外教岗位日报.
+name: teach-english-in-china-job-finder
+description: Find English teaching jobs in China and online teaching opportunities with China-linked providers that accept teachers working from abroad. Compare pay, requirements and application links. Use for Teach English in China job searches, ESL vacancies, teaching opportunities, English daily job briefs, or requests such as 去中国教英语、来华教英语岗位检索、教学机会检索、海外远程教英语 and 外教岗位日报. Formerly named find-china-english-teaching-jobs.
 ---
 
-# Teach English in China or Online
+# Teach English in China — Job Finder
+
+Find English teaching jobs in China or teach online from abroad with China-linked providers. Compare pay, requirements and checked application routes.
+
+Chinese name: 去中国教英语｜岗位检索.
 
 ## Start with one choice
 

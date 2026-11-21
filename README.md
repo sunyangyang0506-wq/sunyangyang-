@@ -2,6 +2,12 @@
 
 个人/业务 AI Skill 工程仓库，当前 Repository **V3.6.0**。
 
+## Teach English in China — Job Finder
+
+[Find English teaching jobs in China or online from abroad](standalone-skills/teach-english-in-china-job-finder/SKILL.md), with pay, requirements and checked application links. Choose in-person teaching, online teaching, or both.
+
+中文：去中国教英语｜岗位检索。原名：`find-china-english-teaching-jobs`。
+
 ## 5个Skills
 
 - xiaohongshu-alive-writer 3.4.0
