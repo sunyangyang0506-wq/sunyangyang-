@@ -1,8 +1,9 @@
 interface:
   display_name: Teach English in China — Job Finder
-  short_description: Find English teaching jobs in China or online from abroad
-  default_prompt: Use $teach-english-in-china-job-finder to find current English teaching
-    jobs in China or online from abroad, with pay, requirements and application links.
+  short_description: Find open teaching jobs in China; compare benefits and barriers
+  default_prompt: Use $teach-english-in-china-job-finder to find English teaching
+    jobs in China or online from abroad, verify open status, and highlight evidenced
+    advantages, key barriers and official application routes.
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:
