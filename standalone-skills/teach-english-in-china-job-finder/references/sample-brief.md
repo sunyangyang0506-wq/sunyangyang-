@@ -1,3 +1,5 @@
+> Historical example retained from an earlier run; not reverified by this update. Reopen sources before reuse. The current rule allows one verified usable official application route; a backup is preferred, not required.
+
 # English teaching opportunities · November 21, 2026
 
 ## Teach in person in China
@@ -12,6 +14,6 @@ Teach academic English and study skills to university students in Shanghai. The 
 
 ## Teach online from abroad
 
-No online opening met both link checks in this example. Meridian ESL listed an eHello role, but we could not verify an independent route for the same vacancy and terms.
+The earlier run withheld an eHello lead under the former two-link rule. That decision is not evidence that no suitable online jobs exist. Reassess the official vacancy and primary route under the current rule before including or excluding it.
 
 Checked November 21, 2026 · Sino-British College, Meridian ESL and eHello. The college posting and its stated email instructions were checked. Access from individual countries and email delivery were not tested.
