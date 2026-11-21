@@ -1,37 +1,37 @@
 # English teaching opportunities · {{date}}
 
-{{Current openings on a first issue, or the count of newly found and updated openings since the previous issue.}}
+{{Current openings on first delivery; otherwise newly found, changed and closing roles since the previous issue. State coverage and any unavailable history.}}
 
-## Teach online from abroad
+## {{Teach in person in China / Teach online from abroad}}
 
-**{{Role}} · {{School or platform}}**
+**{{Role}} · {{Employer}} · {{City or permitted remote locations}}**
 
-{{Who you would teach and the connection to China.}}
+{{Learners, work and China connection. Mark specific vacancy versus evergreen pool.}}
 
-**Work from** {{Permitted countries and required teaching window, with time zone if listed.}}
+**Requirements** · {{Degree; experience; certificate; other employer-stated hard conditions. Use “not listed” for missing terms.}}
 
-**Pay and requirements** {{Rate, currency and per-lesson or per-hour unit. One or two employer requirements.}}
+**Work permit support** · {{Employer's exact meaning, or “not listed”; never a personal eligibility conclusion.}}
 
-**Primary** · [{{Read the job and apply}}]({{primary_url}})
+**Pay** · {{Currency, range, original period/lesson unit, gross/net or “not listed”; no guaranteed upper bound.}}
 
-**Backup** · [{{Apply on the international site or email the school for the form}}]({{backup_url_or_mailto}})
+**Workload and benefits** · {{Teaching hours; total/office hours; remote time window and zone; housing; paid leave; contract and guaranteed hours. Missing values: “not listed”.}}
 
-**Deadline** · {{Closing date or “no deadline listed”}}
+**Primary** · [{{Read vacancy / open application / email to request form}}]({{verified_official_url_or_mailto}})
 
-## Teach in person in China
+**Backup** · {{Verified independent link and exact purpose, or “No independent backup verified”.}}
 
-**{{Role}} · {{School and city}}**
+**Access notes** · {{Language and observed login/phone/app barriers; do not promise worldwide access.}}
 
-{{Who you would teach and what the job involves.}}
+**Deadline and status** · {{Deadline or “no deadline listed”; status evidence; new/changed/closing label when justified.}}
 
-**Pay and requirements** {{Pay in the listed unit, degree or certificate, any stated local-residence or work permit condition.}}
+**Before applying** · {{One or two material missing terms to ask about; next action.}}
 
-**Primary** · [{{Read the job and apply}}]({{primary_url}})
+**Checked** · {{Actual date and source links.}}
 
-**Backup** · [{{Apply on the international site or email the school for the form}}]({{backup_url_or_mailto}})
+## Changes to previously delivered jobs
 
-**Deadline** · {{Closing date or “no deadline listed”}}
+{{Only verified changes or closures. Omit if none or first issue.}}
 
-Checked {{date}} · {{Names or links of sources actually reviewed}}
+Sources checked: {{Actual sources}}. Limitations: {{Only material limitations}}.
 
-<!-- Keep only the selected track(s). Include a card only after checking both independent routes for the same role. Verify a mailto address from the vacancy notice. Repeat one card per opportunity. Use “not listed” for missing facts. If nothing changed, replace the cards with “No new or updated openings were verified today” and the sources checked. If the search was interrupted, say what could be checked. Remove instructions and unused placeholders before sending. -->
+<!-- Keep selected routes only, up to five cards by default. One verified usable official primary is sufficient; seek but do not require a backup. No invented dates, terms or successful submissions. If no qualifying changes, replace cards with a brief finding and sources checked. Distinguish failed search from no openings. Remove all unused placeholders and instructions. -->
