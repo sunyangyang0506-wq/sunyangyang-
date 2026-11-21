@@ -6,6 +6,14 @@
 
 **{{Role}} · {{Employer}} · {{City or permitted remote locations}}**
 
+**Status** · {{Open — verified; official acceptance evidence, source and actual check time/timezone. Unconfirmed leads belong in a separate section; closed roles only in changes.}}
+
+**Why consider it?** · {{Up to 2–3 evidence-backed advantages with source links; fewer if evidence is limited. Avoid unsupported comparative claims.}}
+
+**Who may benefit** · {{Role-based audience; no inferred personal eligibility.}}
+
+**Key barrier or trade-off** · {{Explicit qualification or limitation; no invented obstacle.}}
+
 {{Learners, work and China connection. Mark specific vacancy versus evergreen pool.}}
 
 **Requirements** · {{Degree; experience; certificate; other employer-stated hard conditions. Use “not listed” for missing terms.}}
