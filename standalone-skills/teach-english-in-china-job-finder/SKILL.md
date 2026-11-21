@@ -1,11 +1,11 @@
 ---
 name: teach-english-in-china-job-finder
-description: Find English teaching jobs in China and online teaching opportunities with China-linked providers that accept teachers working from abroad. Compare pay, workload, benefits, eligibility conditions and verified application routes. Use for Teach English in China job searches, ESL vacancies, teaching opportunities, English daily or weekly job briefs, or requests such as 去中国教英语、来华教英语岗位检索、教学机会检索、海外远程教英语 and 外教岗位日报. Formerly named find-china-english-teaching-jobs.
+description: Find English teaching jobs in China and online teaching opportunities with China-linked providers that accept teachers working from abroad. Verify whether vacancies are still open, highlight each role’s evidence-backed advantages and key entry barriers, and compare pay, workload, benefits and official application routes. Use for Teach English in China job searches, ESL vacancies, teaching opportunities, English daily or weekly job briefs, or requests such as 去中国教英语、来华教英语岗位检索、教学机会检索、海外远程教英语 and 外教岗位日报. Formerly named find-china-english-teaching-jobs.
 ---
 
 # Teach English in China — Job Finder
 
-Find English teaching jobs in China or teach online from abroad with China-linked providers. Compare pay, requirements and checked application routes.
+Find English teaching jobs in China or teach online from abroad with China-linked providers. Check whether each vacancy is still accepting applications and explain why it is worth considering, with evidence-backed highlights, entry barriers and checked official application routes.
 
 Chinese name: 去中国教英语｜岗位检索.
 
@@ -43,6 +43,12 @@ Seek a **Backup** on an independent host for the same opening, or a vacancy-spec
 
 Match employer, job reference or title, location and deadline across routes. Reject tracking variants, identical destinations, shared-login dependencies, generic homepages and generic talent pools as backups for a specific vacancy. A route referring back to an inaccessible primary is not a backup. If an observed local-phone or app-only barrier prevents overseas application, replace that route or hold the role when no usable route remains. Do not exclude a usable official route merely because no second route exists. Do not ask the reader for their country solely to check links; report observed access limits without promising worldwide access.
 
+## Verify open status and explain value
+
+Classify every lead as **Open — verified**, **Closed**, or **Unconfirmed**. Recommend only Open — verified vacancies in the active shortlist. Require current, vacancy-specific official evidence that applications are accepted: an explicit open status or an unexpired official application window with no contrary closure notice. Check the application destination for closure messages; a working page, recent posting date, apply button or listed email alone does not establish open status. Treat conflicting evidence as Unconfirmed until resolved. Report the actual check date/time and timezone, source and status basis; verification is a snapshot, not a guarantee of continued availability. Keep uncertain leads separately labelled, not mixed with verified recommendations. Report closures of previously delivered vacancies separately. Label evergreen talent pools separately from specific open vacancies.
+
+Lead each card with **Why consider it?**: up to two or three advantages supported by the vacancy or directly linked official terms. Fewer evidenced advantages are better than filler. Consider pay, housing, paid leave, teaching versus office hours, relocation support, overseas applications and career-relevant duties. Distinguish the stated benefit from its possible value to a reader. Do not call pay high, workload low, an employer prestigious or a job better than alternatives without dated, comparable evidence; do not infer guaranteed savings, sponsorship or career progression. Pair highlights with **Who may benefit** based on role characteristics, and **Key barrier or trade-off** from explicit requirements. Do not infer personal eligibility or invent a disadvantage. If no clear advantage is supported, say so. Order cards: open status and evidence → highlights → who may benefit → key barrier → detailed terms → application route.
+
 ## Write today's brief
 
 Use [the English daily brief](assets/daily-brief.md). See the [dated example](references/sample-brief.md) for a school email fallback; it is historical, not evidence of current openings. Recheck the live sources for every new brief. Keep only the route(s) chosen. Use up to five concise job cards by default, sorted by volunteered preferences, evidence completeness and closing date; do not claim personal fit without profile facts. Separate the two routes. Do not fill a quota with unverified jobs. Put the application link or official application email beside each role. Skip outbound marketing and unsolicited credential referrals.
@@ -57,6 +63,6 @@ Look up existing schedules for the same reader, route and destination. Update th
 
 ## Check before delivery
 
-Check each card against its sources: active status or honest uncertainty, official usable primary route, backup status, original pay units, entry conditions, workload/benefits and missing information, and the actual check date. List sources actually reviewed and material limitations. Distinguish no qualifying jobs, incomplete search and unavailable history. Keep these checks short in normal reader output; include a fuller quality summary when the reader asks to assess the skill.
+Check each card against its sources: verified open status for active recommendations (uncertain leads separately labelled), evidence-backed highlights and a key barrier, official usable primary route, backup status, original pay units, entry conditions, workload/benefits and missing information, and the actual check date. List sources actually reviewed and material limitations. Distinguish no qualifying jobs, incomplete search and unavailable history. Keep these checks short in normal reader output; include a fuller quality summary when the reader asks to assess the skill.
 
 For a product demonstration, use an actual run, name its date and tool prerequisites, and disclose failures. Never fabricate a before/after result, buyer review, sale, usage count or marketplace approval. Treat portability checks and a scheduled brief as delivery validation only, not proof of market demand or completed sales. Do not publish the skill or change marketplace listings merely because someone runs this job finder.
