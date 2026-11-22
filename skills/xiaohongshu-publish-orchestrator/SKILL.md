@@ -1,6 +1,6 @@
 ---
 name: xiaohongshu-publish-orchestrator
-version: 1.3.0
+version: 1.4.0
 description: 从一句选题、原始资料或现成稿件制作小红书图文、新闻卡片或口播视频笔记。在首次配置发布账号、规划栏目选题、生成文章与配图、定时自动发布或核对回执时使用；支持仅制作、保存草稿、定时和授权发布，按实际账号及工具能力执行。
 ---
 
@@ -100,3 +100,47 @@ description: 从一句选题、原始资料或现成稿件制作小红书图文�
 ```
 
 **验收标准：** 能明确区分“用户同意发布”“工具具备操作权限”“账号已登录”“平台允许上传”“平台允许提交”五类不同授权；每项有真实证据或明确标为未知。不能因为新增了本节就声称已获得权限或完成发布。
+
+
+## GitHub 私有日报仓库作为发布源（v1.4.0）
+
+适用：跨境医疗与美国热点每日简报，以及其他已明确指定 Git 仓库的栏目。**日报和发布素材只能进入已确认的私人内容仓库；本通用 Skill 所在的公开仓库只保存工作流代码，不得保存个人简报、私人分析、账号标识、手机号或发布回执。**
+
+### 首次绑定与权限门禁
+1. 读取私人配置中的 `content_repository`（格式 `owner/repo`）、`visibility_required=private`、`branch`、`column`、`timezone=Asia/Shanghai`。未绑定时查找用户已有专用仓库；找不到则尝试当前环境确实支持的官方“创建私有仓库”操作。若无创建仓库工具，记录 `PENDING_PRIVATE_REPOSITORY_CREATION`，不得擅自写入公开仓库或挪用无关私人仓库。
+2. 通过 GitHub 的真实仓库元数据确认 `visibility=private`、执行身份拥有读取权限，日报写入方另须拥有 push 权限。检查当前运行的 GitHub 连接器是否实际可用；用户口头授权不代表连接器已具备仓库创建或写入能力。
+3. 在私人配置中记录仓库、分支、目录约定和授权范围；不记录 GitHub Token、Cookie、平台密码。
+
+### 目录与发布内容契约
+
+```text
+README.md
+SCHEMA.md
+archive/YYYY-MM-DD/brief.md
+archive/YYYY-MM-DD/xhs-package.zip
+archive/YYYY-MM-DD/manifest.json
+archive/YYYY-MM-DD/publish-status.json
+```
+
+- `brief.md`：当日**完整版**，含北京日期、2条跨境医疗+3条美国新闻、各条事件/发布日期、权威原始链接、事实与分析边界、单项商业研究行动；历史资料须标注。未核验的历史档案只标记 `archived_unverified`，不得伪装为当日已核验新闻。
+- `xhs-package.zip`：当日原始发布包，包含原图、标题正文、摘要、标签、检查清单。不要因为从 GitHub 取件而改图或用其他日期素材。
+- `manifest.json`：稳定稿件 ID `crossborder-us-brief:YYYY-MM-DD:account`、北京时间日期、源 Page、内容版本、ZIP SHA-256、图片顺序及每张图片 SHA-256、检查结果、源文件路径、发布状态。不要公开手机号或敏感个人资料。
+- `publish-status.json`：`READY`、`SUBMITTING`、`UNDER_REVIEW`、`PUBLISHED`、`UNKNOWN`、`BLOCKED`，以及真实后台回执、时间、笔记 ID/URL（如有）；不得因 Git 提交成功就标为已发布。
+
+### 日报生成端：提交到 Git
+1. 每天先读取 `archive/YYYY-MM-DD/manifest.json`；存在时按版本、日期、内容 SHA 和回执判断是同日重跑还是新内容。默认同日原位更新，不覆盖人工编辑；发现冲突时停止并报告。
+2. 先在本次运行中实际生成并验证完整版 `brief.md` 和当日 `xhs-package.zip`，校验 ZIP 及其中原图数量、顺序、可解码性和 SHA-256。未成功制作的内容不得上传。
+3. 使用已授权 GitHub 写入工具将文件提交到**已验证为私有**的内容仓库同一日期目录；大文件使用实际支持的 Git blob/tree/commit 或等效安全上传机制，不能只提交本地文件名或假链接。提交后重新从 GitHub 读取 manifest、Markdown 和 ZIP 字节，核对 SHA-256；只有读回一致才标记 `GIT_ARCHIVED`。
+4. 若写入工具不可用、权限不足、仓库不存在或文件无法读回，记录 `GIT_ARCHIVE_BLOCKED` 及具体原因，保留本地原始素材和 Page 归档；不要声称每天已自动推送。
+
+### 小红书发布端：**优先从 GitHub 取内容**
+1. 按北京时间日期和目标账号查询私有仓库 `archive/YYYY-MM-DD/manifest.json`，并查询该账号同日真实发布回执。已发布/审核中则停止重复发布。
+2. 从 manifest 所指 `brief.md` 与 `xhs-package.zip` **实际下载字节**到独立临时目录，验证 ZIP SHA-256、每张PNG SHA-256、数量/顺序、标题正文、日期、账号与可见性；缺失或不一致时停止 `BLOCKED_GIT_CONTENT_VALIDATION`，不能拿上一日的图片替换。
+3. 权限门禁通过后，使用已授权小红书后台查重、上传、预览、提交并回读真实回执。将回执写回同一日期的私有 `publish-status.json`，避免泄露登录凭据。回执未知先查后台，不盲目重发。
+4. GitHub 暂不可用但本次生成端确实持有原始字节时，可按已明确授权的回退策略直接发布；仍需完整校验、查重及真实后台回执，之后再补齐 Git 归档。任何回退都要记录数据来源与原因。
+
+### 跨会话验收
+- 私有仓库确实存在、可读可写；仓库名称不是成功证据。
+- 每日 Git commit 可查，`brief.md`、`manifest.json`、`xhs-package.zip` 可读回且 SHA 一致。
+- 发布端能够独立从 Git 获取**当日原图**并通过校验。
+- 小红书公开状态只以真实后台回执为准。
