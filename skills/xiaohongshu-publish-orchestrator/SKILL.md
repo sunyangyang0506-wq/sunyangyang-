@@ -1,6 +1,6 @@
 ---
 name: xiaohongshu-publish-orchestrator
-version: 1.5.0
+version: 1.6.0
 description: 从一句选题、原始资料或现成稿件制作小红书图文、新闻卡片或口播视频笔记。在首次配置发布账号、规划栏目选题、生成文章与配图、定时自动发布或核对回执时使用；支持仅制作、保存草稿、定时和授权发布，按实际账号及工具能力执行。
 ---
 
@@ -166,3 +166,8 @@ python scripts/daily_pipeline.py fetch --date YYYY-MM-DD --output /tmp/xhs-YYYY-
 本仓库历史归档中11月17日至22日的6份原ZIP仅是原始快照，不表示新闻重新核验，也不表示笔记已经发布。GitHub Actions 仅验证已提交归档，不能自行生成日报或模拟小红书发布。
 
 执行端每次运行的验收：`private repo confirmed -> original ZIP uploaded -> Git commit -> remote bytes read back -> 7 PNG hashes verified -> account & write permission checked -> backend dedupe -> preview verified -> submit once -> real receipt saved`。任何步骤失败都保留真实状态并停止依赖步骤，不编造成功。
+
+
+## 私有GitHub远程读回验收（v1.6.0）
+
+专用日报仓库 v3 执行端提供 `python scripts/daily_pipeline.py verify-remote`。每次 `push --push` 后自动从私有GitHub的main分支重新克隆，逐日期对比本地与远端的ZIP、manifest、简报、发布状态字节SHA-256。仅当远端全部一致时，才承认 `GIT_ARCHIVED`；仅有本地Git commit、推送命令返回或文件名都不算远程归档完成。远端仓库不存在时，记录 `PENDING_PRIVATE_REPOSITORY_CREATION`，不得使用公开Skill仓库替代。该验证不等于小红书发布回执。
