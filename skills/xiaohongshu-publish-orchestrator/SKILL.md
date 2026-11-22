@@ -1,6 +1,6 @@
 ---
 name: xiaohongshu-publish-orchestrator
-version: 1.4.0
+version: 1.5.0
 description: 从一句选题、原始资料或现成稿件制作小红书图文、新闻卡片或口播视频笔记。在首次配置发布账号、规划栏目选题、生成文章与配图、定时自动发布或核对回执时使用；支持仅制作、保存草稿、定时和授权发布，按实际账号及工具能力执行。
 ---
 
@@ -144,3 +144,25 @@ archive/YYYY-MM-DD/publish-status.json
 - 每日 Git commit 可查，`brief.md`、`manifest.json`、`xhs-package.zip` 可读回且 SHA 一致。
 - 发布端能够独立从 Git 获取**当日原图**并通过校验。
 - 小红书公开状态只以真实后台回执为准。
+
+
+## 日报 GitHub 发布链路的可执行入口（v1.5.0）
+
+目标**私有**仓库：`sunyangyang0506-wq/crossborder-medical-us-daily-briefs`。此仓库必须先通过 GitHub API 核验 `private=true` 和当前执行身份的 `push` 权限；不存在则只能在具备创建私有仓库权限的环境调用官方 GitHub API 创建，不得退化写入公开仓库。
+
+目标仓库的 `scripts/daily_pipeline.py` 是发布包归档和取件入口：
+
+```bash
+# GitHub 凭据由执行环境的 GITHUB_TOKEN 或 GH_TOKEN 注入；不在聊天或仓库存储
+python scripts/daily_pipeline.py repo --create
+python scripts/daily_pipeline.py archive --date YYYY-MM-DD --zip /path/to/original.zip --brief /path/to/brief.md
+git add archive/YYYY-MM-DD && git commit -m "Archive daily brief YYYY-MM-DD"
+python scripts/daily_pipeline.py push --push
+python scripts/daily_pipeline.py fetch --date YYYY-MM-DD --output /tmp/xhs-YYYY-MM-DD
+```
+
+归档前检查原ZIP和7张PNG，manifest按顺序保存各SHA-256。远端push后必须重新下载/读回校验，才能标记 `GIT_ARCHIVED`。发布端取件的 `fetch` 只负责从私有GitHub仓库下载、验证并解出当日原图，**不会登录或发小红书**。只有在实际存在小红书官方发布工具或可写浏览器时，才继续后台账号核验、查重、按序上传、预览、单次提交、回执读取。若缺少工具，准确记录 `BLOCKED_NO_BROWSER_CONTROL`；不能用 Skill 声明代替工具授权。
+
+本仓库历史归档中11月17日至22日的6份原ZIP仅是原始快照，不表示新闻重新核验，也不表示笔记已经发布。GitHub Actions 仅验证已提交归档，不能自行生成日报或模拟小红书发布。
+
+执行端每次运行的验收：`private repo confirmed -> original ZIP uploaded -> Git commit -> remote bytes read back -> 7 PNG hashes verified -> account & write permission checked -> backend dedupe -> preview verified -> submit once -> real receipt saved`。任何步骤失败都保留真实状态并停止依赖步骤，不编造成功。
