@@ -10,7 +10,7 @@
 
 ## 注册的 6 个 Skills
 
-- [赴华医疗英文 X 资讯与咨询](skills/publish-china-care-updates/SKILL.md) 1.0.0
+- [赴华医疗英文 X 资讯与咨询](skills/publish-china-care-updates/SKILL.md) 1.1.0
 - xiaohongshu-alive-writer 3.4.0
 - alive-oral-scriptwriter 3.3.0
 - personal-visual-storyteller 3.3.0
