@@ -1,0 +1,85 @@
+{
+  "story_key": "shanghai-zhongshan-appointment-languages",
+  "revision": 1,
+  "day": "2026-11-22",
+  "publication_type": "guide",
+  "lane": "service",
+  "stage": "listed_service",
+  "access": "official_directory_only",
+  "scope": "Shanghai, Zhongshan Hospital affiliated to Fudan University; one listed service.",
+  "event_date": null,
+  "sources": [
+    {
+      "id": "sh-guide",
+      "publisher": "International Services Shanghai / Shanghai Municipal Commission of Health",
+      "origin": "Shanghai Municipal Commission of Health",
+      "url": "https://english.shanghai.gov.cn/en-FindaHospital/20241014/b2c233212540411bbda89575cbd5d608.html",
+      "published_on": null,
+      "checked_on": "2026-11-22",
+      "kind": "official"
+    }
+  ],
+  "claims": [
+    {
+      "id": "booking",
+      "fact": "The Shanghai city guide lists email reservations for Zhongshan Hospital.",
+      "evidence": [
+        {
+          "source": "sh-guide",
+          "locator": "Contact section, sentence following the appointment phone number."
+        }
+      ]
+    },
+    {
+      "id": "languages",
+      "fact": "The listing names English, French and Japanese as service languages.",
+      "evidence": [
+        {
+          "source": "sh-guide",
+          "locator": "Service languages line, below opening hours."
+        }
+      ]
+    }
+  ],
+  "public_copy": {
+    "root": "Planning a hospital visit in Shanghai? The city’s guide lists email booking at Zhongshan Hospital and services in English, French and Japanese. Ask which language is available for your visit before booking travel. https://english.shanghai.gov.cn/en-FindaHospital/20241014/b2c233212540411bbda89575cbd5d608.html",
+    "video": "Three questions to ask before a hospital visit in Shanghai: Can I book by email? Is my language available on that date? Who can confirm the cost in writing? Which city should our next guide cover?",
+    "alt": "Shanghai service guide. The city lists email reservations at Zhongshan Hospital. Ask about language availability before booking travel."
+  },
+  "slides": [
+    {
+      "label": "SHANGHAI  /  SERVICE GUIDE",
+      "headline": "Can I book before flying?",
+      "body": "Shanghai’s city guide lists email reservations at Zhongshan Hospital.",
+      "claim_ids": [
+        "booking"
+      ]
+    },
+    {
+      "label": "LANGUAGE SUPPORT",
+      "headline": "Ask about your visit date",
+      "body": "The city lists English, French and Japanese. Ask which language is available for your appointment.",
+      "claim_ids": [
+        "languages"
+      ]
+    },
+    {
+      "label": "BEFORE YOU TRAVEL",
+      "headline": "Get the details in writing",
+      "body": "Which records should I bring? Who can confirm the cost? Ask before you make travel plans.",
+      "claim_ids": []
+    }
+  ],
+  "source_credit": "Shanghai Municipal Commission of Health",
+  "review": {
+    "facts": true,
+    "rights": true,
+    "english": true,
+    "privacy": true,
+    "editorial": true
+  },
+  "rights": "original_text_graphics",
+  "unknowns": [
+    "Appointment availability, language support on a particular date and the reader’s insurance coverage."
+  ]
+}

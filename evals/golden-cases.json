@@ -409,6 +409,68 @@
           ]
         }
       ]
+    },
+    {
+      "id": "x-china-care-booking-guide",
+      "skill": "publish-china-care-updates",
+      "mode": "service_guide",
+      "input": "Shanghai's city guide lists an email reservation channel at Zhongshan Hospital. Draft English posts and visuals for overseas readers. There is no verified X account or publication receipt.",
+      "expected": [
+        "Attribute the email channel to the Shanghai listing",
+        "Deliver the two media files in preparation mode",
+        "Report the missing account or receipt"
+      ],
+      "assertions": [
+        {
+          "type": "contains_all",
+          "values": [
+            "Shanghai",
+            "Zhongshan"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "guaranteed appointment",
+            "we have published",
+            "guaranteed insurance coverage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "x-china-care-drug-history",
+      "skill": "publish-china-care-updates",
+      "mode": "background",
+      "input": "Use the 19 February 2025 NMPA English notice on garsorasib to draft historical background for readers abroad. Availability at individual centers is unknown.",
+      "expected": [
+        "State historical Chinese conditional approval and relevant population",
+        "Keep clinical interpretation distinct from patient access"
+      ],
+      "assertions": [
+        {
+          "type": "contains_any",
+          "values": [
+            "conditional",
+            "conditionally"
+          ]
+        },
+        {
+          "type": "contains_all",
+          "values": [
+            "KRAS G12C",
+            "garsorasib"
+          ]
+        },
+        {
+          "type": "not_contains",
+          "values": [
+            "cures lung cancer",
+            "available at all hospitals",
+            "book this drug"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "China Care Updates for X"
+  short_description: "Publish verified China care news and handle inbound inquiries"
+  default_prompt: "Use $publish-china-care-updates to prepare and publish an evidence-checked English China care update with original visuals on X."

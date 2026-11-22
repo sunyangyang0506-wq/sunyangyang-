@@ -1,0 +1,32 @@
+{
+  "story_key": "china-garsorasib-conditional-approval-background",
+  "revision": 1,
+  "day": "2026-11-22",
+  "publication_type": "background",
+  "lane": "drug",
+  "stage": "conditional_approval",
+  "access": "Historical regulatory notice only; institutional supply unverified.",
+  "scope": "China; historical marketing authorization for the indication described in NMPA's English notice.",
+  "event_date": null,
+  "sources": [{"id":"nmpa","publisher":"National Medical Products Administration (China)","origin":"CCFDIE on NMPA's English website","url":"https://english.nmpa.gov.cn/2025-02/19/c_1073628.htm","kind":"official","published_on":"2025-02-19","date_meaning":"English page last updated","checked_on":"2026-11-22"}],
+  "claims": [
+    {"id":"decision","fact":"China's NMPA reported conditional marketing approval for garsorasib tablets.","evidence":[{"source":"nmpa","locator":"Title and first body paragraph."}]},
+    {"id":"people","fact":"The indication covered adults with advanced non-small cell lung cancer bearing the KRAS G12C mutation after at least one systemic treatment.","evidence":[{"source":"nmpa","locator":"Second body paragraph, indication sentence."}]},
+    {"id":"date","fact":"The English notice identifies 19 February 2025 as the page update date. The decision date is unspecified.","evidence":[{"source":"nmpa","locator":"Date below title and first paragraph, which says 'Recently'."}]}
+  ],
+  "clinical": {"subject":"Garsorasib tablets","population":"Adults with advanced non-small cell lung cancer with a KRAS G12C mutation who had received at least one systemic treatment.","jurisdiction":"China","indication":"Previously treated advanced KRAS G12C-mutated non-small cell lung cancer in adults.","regulator_source":"nmpa","intervention":"Garsorasib tablets","comparator":null,"n":null,"endpoint":null,"follow_up":null,"limitations":"Historical regulatory notice. It specifies neither the exact decision date nor trial results, current labeling or availability at a hospital."},
+  "public_copy": {
+    "root":"Background | An English notice updated 19 Feb 2025 reports that China granted conditional marketing approval for garsorasib tablets for adults with advanced non-small cell lung cancer with a KRAS G12C mutation after at least one systemic treatment. https://english.nmpa.gov.cn/2025-02/19/c_1073628.htm",
+    "video":"What does the date on China's garsorasib notice tell us? The regulator updated its English page on 19 Feb 2025. It described a conditional approval and identified the patient group. The exact decision date is unspecified. https://english.nmpa.gov.cn/2025-02/19/c_1073628.htm",
+    "alt":"Historical background. China's regulator reported conditional approval of garsorasib tablets for adults who had received at least one systemic treatment for advanced non-small cell lung cancer with a KRAS G12C mutation. The notice was updated on 19 February 2025."
+  },
+  "slides":[
+    {"label":"CHINA  /  BACKGROUND  /  FEB 2025 NOTICE","headline":"Conditional approval for garsorasib","body":"China’s regulator described use after at least one systemic treatment in adults with advanced non-small cell lung cancer carrying a KRAS G12C mutation.","claim_ids":["decision","people","date"]},
+    {"label":"WHO THE NOTICE COVERED","headline":"The specific mutation matters","body":"The indication named KRAS G12C. It also specified advanced non-small cell lung cancer, adulthood and prior systemic treatment.","claim_ids":["people"]},
+    {"label":"READING THE NOTICE","headline":"When was the notice updated?","body":"The English page was updated on 19 Feb 2025. The notice gives no exact date for the approval decision.","claim_ids":["date"]}
+  ],
+  "source_credit":"China’s National Medical Products Administration",
+  "review":{"facts":true,"rights":true,"privacy":true,"english":true,"editorial":true},
+  "rights":"original_text_graphics",
+  "unknowns":["Exact decision date in this notice.","Current label, subsequent regulatory actions, efficacy results, hospital stock, reimbursement and access for international patients."]
+}

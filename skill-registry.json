@@ -1,7 +1,7 @@
 {
   "repository_version": "3.6.0",
   "schema_version": "1.1.0",
-  "updated_at": "2026-11-21",
+  "updated_at": "2026-11-22",
   "skills": [
     {
       "name": "xiaohongshu-alive-writer",
@@ -45,9 +45,18 @@
     },
     {
       "name": "xiaohongshu-publish-orchestrator",
-      "version": "1.1.0",
+      "version": "1.6.0",
       "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
       "contract": "contracts/xiaohongshu-publish-orchestrator.json",
+      "evals": "evals/golden-cases.json",
+      "shared_dependencies": [],
+      "status": "active"
+    },
+    {
+      "name": "publish-china-care-updates",
+      "version": "1.0.0",
+      "path": "skills/publish-china-care-updates/SKILL.md",
+      "contract": "contracts/publish-china-care-updates.json",
       "evals": "evals/golden-cases.json",
       "shared_dependencies": [],
       "status": "active"

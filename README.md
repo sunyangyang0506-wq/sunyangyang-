@@ -8,20 +8,21 @@
 
 中文：去中国教英语｜岗位检索。原名：`find-china-english-teaching-jobs`。
 
-## 5个Skills
+## 注册的 6 个 Skills
 
+- [赴华医疗英文 X 资讯与咨询](skills/publish-china-care-updates/SKILL.md) 1.0.0
 - xiaohongshu-alive-writer 3.4.0
 - alive-oral-scriptwriter 3.3.0
 - personal-visual-storyteller 3.3.0
 - douyin-persona-audit 1.2.0
-- xiaohongshu-publish-orchestrator 1.1.0
+- xiaohongshu-publish-orchestrator 1.6.0
 
 ## 当前工程能力
 
 - Skill Registry
 - Metadata / Contract Schema
-- 5个输入输出Contract
-- **15个Golden Cases**
+- 6个输入输出Contract
+- **17个Golden Cases**
 - Repository Validator
 - Golden Eval Runner
 - 单元/回归测试

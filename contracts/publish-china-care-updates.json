@@ -1,0 +1,49 @@
+{
+  "skill": "publish-china-care-updates",
+  "contract_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "edition_scope",
+      "required": true,
+      "description": "Beijing edition day, geographic scope, claims and primary source checks."
+    },
+    {
+      "name": "publication_account",
+      "required": false,
+      "description": "Verified account binding and durable state for live publishing."
+    },
+    {
+      "name": "licensed_assets",
+      "required": false,
+      "description": "Authorized photos and clips with rights evidence and file checksums."
+    },
+    {
+      "name": "inquiry_events",
+      "required": false,
+      "description": "Pseudonymous opted-in inbound stages from a private authorized source."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "edition",
+      "description": "Structured evidence and two English posts."
+    },
+    {
+      "name": "media",
+      "description": "Original or licensed PNG, H.264 MP4, captions and media manifest."
+    },
+    {
+      "name": "receipt",
+      "description": "Delivery status and verified X links per post, or exact outstanding step."
+    },
+    {
+      "name": "opportunities",
+      "description": "Attributed navigation and institutional inquiries, qualified leads and confirmed handoffs."
+    }
+  ],
+  "hard_guards": [
+    "Verify scope, sources, rights, binding and media before publication.",
+    "Keep research, marketing authorization and actual access distinct.",
+    "No cold outreach, private case data, fabricated leads or success without X receipts."
+  ]
+}
