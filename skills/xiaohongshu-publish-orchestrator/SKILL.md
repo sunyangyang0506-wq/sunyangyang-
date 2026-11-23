@@ -2,7 +2,7 @@
 name: xiaohongshu-publish-orchestrator
 description: 制作或恢复小红书图文、长文和口播发布包，按用户授权完成草稿、定时或立即发布，核验后台回执并防止重复提交。适用于已有稿件带图同步、跨会话附件取回、每日栏目发布及中断恢复。
 metadata:
-  version: "1.7.1"
+  version: "1.8.0"
 ---
 
 # 小红书笔记全流程发布
@@ -12,12 +12,14 @@ metadata:
 ## 按需读取
 
 - 首次配置或账号、范围变化：[首次配置](references/first-run.md)。复用已有配置，只补真正缺项。
-- 需要新写稿：图文读[写作参考](references/xiaohongshu-alive-writer.md)，口播读[口播参考](references/alive-oral-scriptwriter.md)，新制配图读[视觉参考](references/personal-visual-storyteller.md)。原稿同步不默认调用重写或重制流程。
+- 需要新写稿或优化文稿包装：图文读[写作参考](references/xiaohongshu-alive-writer.md)，口播读[口播参考](references/alive-oral-scriptwriter.md)。新制或优化封面读[人物与现场封面](references/personal-visual-storyteller.md)，可选“人物场景＋醒目大字”或“真实现场＋简洁主题”，按题材与可用素材选择。原稿同步不默认调用重写或重制流程。
 - 执行任意发布：[发布检查与结果](references/xiaohongshu-publish-orchestrator.md)。
 - ChatGPT 附件、长文插图、浏览器断连或每日补查：[恢复与长文发布](references/recovery-and-longform.md)。
 - 用户已选择 Git 私有归档：[私人内容仓库](references/private-archive.md)。归档是独立步骤，默认不阻断已有完整原件的发布。
 
 ## 每次执行
+
+新制作的文稿与封面先明确读者在意的主问题，标题具体、开头及时兑现承诺、封面有视觉主体。避免只用日期、长摘要和默认纯文字模板作为封面。两种风格都是创作选项，不要求本人出镜，不照搬参考人物或品牌；事实、来源、隐私和原样同步要求优先。风格更新适用于后续制作，不自动改动或重发已提交笔记。
 
 1. **先记进度并查重。** 用平台、目标账号、栏目和用户指定时区的稿件日期构成稳定标识。收到触发立即写入私人记录，再检查笔记管理、回执及草稿。同日同栏目已经预约、审核中或公开则只同步状态；未通过则保存平台原因并报告，不自动重发。上次准备提交、提交中或结果不明时，以后台为准；无法排除已提交就不再次点击。
 2. **核实来源和当前通道。** 读取指定日期完整原稿及实际媒体，核对源聊天或 Page 的日期和内容。旧聊天无更新时查同名聊天和其引用 Page，不能只看摘要断言缺稿。发布端实际检查浏览器、账号及入口，不沿用生成端“浏览器不可用”的环境结论。来源、账号和目录等用户配置保存在私人记录，不写进公开 Skill。
