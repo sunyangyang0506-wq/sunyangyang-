@@ -45,7 +45,7 @@
     },
     {
       "name": "xiaohongshu-publish-orchestrator",
-      "version": "1.6.0",
+      "version": "1.9.1",
       "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
       "contract": "contracts/xiaohongshu-publish-orchestrator.json",
       "evals": "evals/golden-cases.json",
