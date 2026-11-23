@@ -28,7 +28,7 @@ python3 scripts/brief_workflow.py start --directory "$RUN_DIR" --date "$BRIEF_DA
 python3 scripts/brief_workflow.py prepare --directory "$RUN_DIR" --date "$BRIEF_DATE" --manifest "$MANIFEST" --markdown "$MARKDOWN"
 ```
 
-prepare 在 macOS 使用系统 sips，不修改原 PNG。脚本逐行处理标题、保留全部来源 URL，表格按列名展开全部单元格；缺图、错序、不完整表格或未转换的专有引用会停止。图像的视觉、身份和隐私仍需逐张查看，平台上传后仍需逐处核对图注。
+prepare 优先用 Pillow 生成同尺寸 JPEG，透明区域合成为白底，不复制原 PNG 的文本元数据，也不修改原 PNG。Linux 云环境须在任务使用的 Python 环境安装 Pillow；未安装时仅在确有 sips 的 macOS 使用系统转换，均不可用则停止并说明缺少依赖。脚本逐行处理标题、保留全部来源 URL，表格按列名展开全部单元格；缺图、错序、不完整表格或未转换的专有引用会停止。图像的视觉、身份和隐私仍需逐张查看，平台上传后仍需逐处核对图注。
 
 ## 提交前原子占用
 
@@ -51,6 +51,8 @@ python3 scripts/brief_workflow.py result --directory "$RUN_DIR" --date "$BRIEF_D
 结果不明时不清空记录重试。只有实际后台明确未提交且同一草稿已核对时，才提供新的证据 JSON（date、checked_at、evidence_file、submission_explicitly_absent=true、same_draft_verified=true），用 resolve-unsubmitted 恢复 DRAFT。已审核中、公开或拒绝的稿件不能用此命令重置。
 
 ## 验收与运行边界
+
+用户要求脱离本机运行时，先在实际云环境验证官方登录入口、浏览器接管、账号匹配、跨运行可复用的浏览器会话、持久化素材与账本以及真实云调度。创建云任务、打开登录页、一次登录和启用定时是不同结果，分别记录。云端验证完成后切换唯一提交者并停用旧发布端；无法确认会话和账本跨运行保留时，不将临时沙盒或临时后台进程当作常驻部署。云端继续使用正常身份验证流程，不从本机提取登录凭据。
 
 先对隔离目录验证原包，再对真实状态执行只读 status 和后台去重。不要发测试笔记验证权限。定时任务必须保持启用并读回实际配置；新配置的下一次定时执行仍需核实结果，不能把保存配置称为无人值守验收通过。
 

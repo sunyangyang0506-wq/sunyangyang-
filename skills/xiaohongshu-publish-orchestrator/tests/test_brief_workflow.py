@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 import zlib
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "brief_workflow.py"
@@ -48,6 +49,51 @@ class WorkflowTests(unittest.TestCase):
         (self.directory / "01.png").write_bytes(png()[:-12])
         with self.assertRaises(ValueError):
             w.png_dimensions(self.directory / "01.png")
+
+    def test_upload_copy_preserves_dimensions_original_and_transparency_on_white(self):
+        from PIL import Image, PngImagePlugin
+        source = self.directory / "rgba.png"
+        info = PngImagePlugin.PngInfo()
+        info.add_text("private_note", "must not appear in upload metadata")
+        Image.new("RGBA", (18, 12), (255, 0, 0, 0)).save(source, pnginfo=info)
+        original = source.read_bytes()
+        destination = self.directory / "copy.jpg"
+        with mock.patch.object(w.subprocess, "run", side_effect=AssertionError("No Mac command allowed")):
+            self.assertEqual(w.upload_jpeg(source, destination), "Pillow")
+        self.assertEqual(source.read_bytes(), original)
+        with Image.open(destination) as upload:
+            upload.load()
+            self.assertEqual((upload.format, upload.size, upload.mode), ("JPEG", (18, 12), "RGB"))
+            self.assertEqual(upload.getpixel((9, 6)), (255, 255, 255))
+            self.assertNotIn("private_note", upload.info)
+
+    def test_prepare_without_mac_commands_emits_decodable_upload_and_preserves_original(self):
+        from PIL import Image
+        original = (self.directory / "01.png").read_bytes()
+        manifest = self.directory / "manifest.json"
+        manifest.write_text(json.dumps(self.manifest))
+        markdown = self.directory / "brief.md"
+        markdown.write_text("# 2030-01-02 brief\n## News\nFull body\n![card](01.png)\nA caption")
+        argv = [str(SCRIPT), "prepare", "--directory", str(self.directory), "--date", "2030-01-02",
+                "--manifest", str(manifest), "--markdown", str(markdown)]
+        with mock.patch.object(sys, "argv", argv), mock.patch.object(w.subprocess, "run", side_effect=AssertionError("No Mac command allowed")):
+            w.main()
+        self.assertEqual((self.directory / "01.png").read_bytes(), original)
+        state = w.read_json(self.directory / "进度.json")
+        self.assertEqual(state["stage"], "MEDIA_VERIFIED")
+        self.assertEqual(state["upload_derivatives"][0]["conversion_backend"], "Pillow")
+        with Image.open(self.directory / "01-上传兼容.jpg") as upload:
+            upload.load()
+            self.assertEqual((upload.format, upload.size), ("JPEG", (1, 1)))
+        self.assertIn("<h2>News</h2>\n<p>Full body</p>", (self.directory / "发布正文.html").read_text())
+
+    def test_missing_converter_does_not_change_original_or_write_upload(self):
+        original = (self.directory / "01.png").read_bytes()
+        with mock.patch.dict(sys.modules, {"PIL": None}), mock.patch.object(w.shutil, "which", return_value=None):
+            with self.assertRaisesRegex(ValueError, "needs Pillow"):
+                w.upload_jpeg(self.directory / "01.png", self.directory / "copy.jpg")
+        self.assertEqual((self.directory / "01.png").read_bytes(), original)
+        self.assertFalse((self.directory / "copy.jpg").exists())
 
     def test_heading_does_not_absorb_body_and_table_keeps_all_cells(self):
         md = "# 2030-01-02 brief\n## News\nFull body\n\n![card](01.png)\nA caption\n\n| City | Value |\n| --- | --- |\n| One | 17 |\n| Two | 25 |\n[Source](https://example.org)"

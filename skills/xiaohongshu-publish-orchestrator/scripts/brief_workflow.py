@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import struct
 import subprocess
 import tempfile
@@ -87,6 +88,36 @@ def local_file(directory, name):
     if not file.is_relative_to(directory.resolve()) or not file.is_file():
         raise ValueError(f"Missing or external package file: {name}")
     return file
+
+
+def upload_jpeg(source, destination):
+    """Keep original PNG bytes; produce an opaque, same-size upload copy."""
+    try:
+        from PIL import Image
+    except ImportError:
+        if not shutil.which("sips"):
+            raise ValueError("JPEG conversion needs Pillow on this host; install it in the task's Python environment")
+        subprocess.run(["sips", "-s", "format", "jpeg", str(source), "--out", str(destination)],
+                       check=True, capture_output=True)
+        return "sips"
+    fd, name = tempfile.mkstemp(dir=destination.parent, suffix=".jpg")
+    os.close(fd)
+    try:
+        with Image.open(source) as original:
+            original.load()
+            rgba = original.convert("RGBA")
+            opaque = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+            opaque = Image.alpha_composite(opaque, rgba).convert("RGB")
+            opaque.save(name, format="JPEG", quality=92, subsampling=0)
+            with Image.open(name) as check:
+                check.load()
+                if check.format != "JPEG" or check.size != original.size:
+                    raise ValueError("JPEG upload copy differs in format or dimensions")
+        os.replace(name, destination)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+    return "Pillow"
 
 
 def validate_manifest(directory, date, manifest):
@@ -231,8 +262,10 @@ def main():
                 derived = []
                 for item in images:
                     dest = directory / f"{item['number']:02d}-上传兼容.jpg"
-                    subprocess.run(["sips", "-s", "format", "jpeg", str(directory / item["file"]), "--out", str(dest)], check=True, capture_output=True)
-                    derived.append({"number": item["number"], "file": dest.name, "sha256": hashlib.sha256(dest.read_bytes()).hexdigest()})
+                    backend = upload_jpeg(directory / item["file"], dest)
+                    derived.append({"number": item["number"], "file": dest.name,
+                                    "sha256": hashlib.sha256(dest.read_bytes()).hexdigest(),
+                                    "conversion_backend": backend})
                 (directory / "发布正文.html").write_text(rendered, encoding="utf-8")
                 state.update(stage="MEDIA_VERIFIED", images_expected=len(images), image_order=images, upload_derivatives=derived)
                 atomic_json(path, state)
