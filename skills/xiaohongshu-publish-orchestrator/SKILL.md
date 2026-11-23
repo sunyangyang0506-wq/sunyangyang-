@@ -2,7 +2,7 @@
 name: xiaohongshu-publish-orchestrator
 description: 制作或恢复小红书图文、长文和口播发布包，按用户授权完成草稿、定时或立即发布，核验后台回执并防止重复提交。适用于已有稿件带图同步、跨会话附件取回、每日栏目发布及中断恢复。
 metadata:
-  version: "1.7.0"
+  version: "1.7.1"
 ---
 
 # 小红书笔记全流程发布
