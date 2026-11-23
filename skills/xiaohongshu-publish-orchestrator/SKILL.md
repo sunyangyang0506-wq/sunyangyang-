@@ -2,7 +2,7 @@
 name: xiaohongshu-publish-orchestrator
 description: 制作或恢复小红书图文、长文和口播发布包，按用户授权完成草稿、定时或立即发布，核验后台回执并防止重复提交。适用于已有稿件带图同步、跨会话附件取回、每日栏目发布及中断恢复。
 metadata:
-  version: "1.8.0"
+  version: "1.9.0"
 ---
 
 # 小红书笔记全流程发布
@@ -16,6 +16,7 @@ metadata:
 - 执行任意发布：[发布检查与结果](references/xiaohongshu-publish-orchestrator.md)。
 - ChatGPT 附件、长文插图、浏览器断连或每日补查：[恢复与长文发布](references/recovery-and-longform.md)。
 - 用户已选择 Git 私有归档：[私人内容仓库](references/private-archive.md)。归档是独立步骤，默认不阻断已有完整原件的发布。
+- 每日跨会话生成与自动发布：[每日执行契约](references/daily-pipeline.md)，使用随附脚本校验原包、转换上传副本并原子占用提交；它不替代实际浏览器和后台证据。
 
 ## 每次执行
 
