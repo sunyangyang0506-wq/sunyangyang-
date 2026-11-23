@@ -8,6 +8,8 @@
 
 交接清单包含 date、timezone、content_version、images_expected，以及按顺序的 images[number,file,caption,sha256,width,height,section]。完整 Markdown 在正确段落嵌入相对图片路径，图注紧邻图片。清单与实际字节必须一致。原附件不可取回时，生成端同次直接展示原始图片，保留原 ZIP 供恢复。
 
+源端不能写入原稿 Page 时，交接完整 Markdown、清单和明确的待补写状态，由发布端在可用的既有 Page 中按日期补写最新稿与归档，并读回核对；已有同日内容则保留人工修改，仅补缺项。发布后同步真实审核状态与证据位置。Page 写入与平台提交分别记录；归档待补不触发重发，也不能把生成端“未发布”沿用为平台结论。
+
 ## 本地可执行检查
 
 [brief_workflow.py](../scripts/brief_workflow.py) 仅做文件校验、格式转换和原子提交记录，不登录、不上传、不代替浏览器操作，也不能自动判断事实或隐私。
