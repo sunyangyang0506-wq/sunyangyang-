@@ -2,6 +2,8 @@
 
 ## 两端职责
 
+先读取当前用户私人配置；新用户按 [首次设置](first-run.md) 一次补齐，不复用其他用户账号、日期时区、固定图数或时间。进入实际写操作前核对配置授权与当次证据；配置检查结果本身不允许提交。
+
 生成端检索、核验、制作完整正文与实际原图，并输出当期发布包和清单。发布端是唯一提交者，负责取回、脱敏、平台排版和后台回执。生成端没有本机浏览器不代表发布端失败；两端不要各自提交同一稿件。
 
 读取实际配置的时区和时间，不在通用 Skill 写死用户账号、聊天 ID 或本机目录。生成端提前完成，发布端按既有补查窗口恢复。可选远程归档单独记状态，不做默认发布前提。
@@ -34,7 +36,9 @@ prepare 使用 Pillow 生成同尺寸 JPEG，透明区域合成为白底，不�
 
 完成实际后台检查后，在当期目录保存检查 JSON 和预览截图。JSON 包含 date、带时区的 checked_at、evidence_file、images_expected、images_loaded_count，且以下项必须是 JSON 布尔 true：
 
-`account_matches, dedupe_clear, body_complete, privacy_pass, image_positions, images_loaded, markers_removed, cover_first, preview_complete, public_visibility`
+`account_matches, dedupe_clear, body_complete, privacy_pass, image_positions, images_loaded, markers_removed, cover_first, preview_complete, visibility_matches`
+
+另外包含 expected_visibility（私人配置授权的可见范围）和 observed_visibility（当前后台可见范围），二者必须相同。旧版明确 public_visibility=true 的检查仅兼容原公开场景，不作为新用户默认。
 
 这些值必须来自本次实际观察，不能预填为真。时间超过15分钟或图数不同于本地清单时停止。再执行：
 
@@ -56,7 +60,7 @@ python3 scripts/brief_workflow.py result --directory "$RUN_DIR" --date "$BRIEF_D
 
 先对隔离目录验证原包，再对真实状态执行只读 status 和后台去重。不要发测试笔记验证权限。定时任务必须保持启用并读回实际配置；新配置的下一次定时执行仍需核实结果，不能把保存配置称为无人值守验收通过。
 
-运行依赖本机开机、任务应用可运行、Chrome 连接与账号会话有效。系统锁屏、扫码或平台设备验证按官方流程交接给本人，不关闭屏幕锁、不保存凭据或绕过验证。自动流程在异常时保存进度并报告；网络或模型执行失败不能假装完成。下一轮从同一记录恢复。
+本机模式依赖所选设备开机、任务应用可运行、实际浏览器或发布工具连接与账号会话有效。系统锁屏、扫码或平台设备验证按官方流程交接给本人，不关闭屏幕锁、不保存凭据或绕过验证。自动流程在异常时保存进度并报告；网络或模型执行失败不能假装完成。下一轮从同一记录恢复。
 
 提交后审核中属于已提交，公开需要后台明确状态。后续同一工作流只读复查近期审核中回执并同步变化，不重新提交往期。每次报告区分配置、文件验证、真实提交、公开和计划运行验收。
 

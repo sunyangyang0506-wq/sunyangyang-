@@ -1,6 +1,6 @@
 {
   "skill": "xiaohongshu-publish-orchestrator",
-  "contract_version": "1.2.0",
+  "contract_version": "1.3.0",
   "inputs": [
     {
       "name": "editorial_brief",
@@ -31,6 +31,11 @@
       "name": "deployment_config",
       "required": false,
       "description": "私有执行配置：唯一发布端、时区、来源、任务、持久目录；Mac 模式云端仅制稿。"
+    },
+    {
+      "name": "onboarding_profile",
+      "required": false,
+      "description": "当前用户私有配置；首次一次收齐用途、来源、账号、可见范围、运行端、存储、时区、频率及授权范围。"
     }
   ],
   "outputs": [
@@ -49,6 +54,14 @@
     {
       "name": "publish_package",
       "description": "可回读的正文与媒体、顺序、版本及校验值。"
+    },
+    {
+      "name": "onboarding_receipt",
+      "description": "区分信息已齐、用户授权、连接已验证、待首篇权限、调度配置与首次自然运行验收。"
+    },
+    {
+      "name": "setup_blockers",
+      "description": "当前缺项、必要原生权限及唯一必要人工动作；不回显凭据。"
     }
   ],
   "hard_guards": [
@@ -59,6 +72,9 @@
     "同一日报同一天默认阻止重复发布",
     "已预约、审核中、已公开和驳回只同步；未知提交先查后台",
     "生成端不得与 Mac 唯一发布端并行提交",
-    "安装和 CI 通过不能代替本机调度与后台回执验收"
+    "安装和 CI 通过不能代替本机调度与后台回执验收",
+    "新用户不得继承其他用户账号、时区、时间、私有路径或授权",
+    "首次集中收集所有适用信息和必要权限，无法提前验证的权限记录待验证",
+    "用户授权不等于已登录；账号或设备变化后旧证据不得直接复用"
   ]
 }

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "owner_key": null,
+  "profile_id": null,
+  "mode": null,
+  "series": null,
+  "timezone": null,
+  "content": {
+    "topic": null,
+    "audience": null,
+    "language": null,
+    "format": null,
+    "source_kind": null,
+    "source_refs": [],
+    "public_scope": null,
+    "editing": "preserve",
+    "missing_media": "pause",
+    "create_media": false,
+    "privacy": "redact_personal",
+    "cover_style": "auto"
+  },
+  "account": {
+    "id": null,
+    "display_name": null
+  },
+  "visibility": null,
+  "runtime": {
+    "kind": null,
+    "id": null,
+    "publisher_id": null
+  },
+  "storage": {
+    "private_root": null,
+    "ledger_ref": null
+  },
+  "schedule": {
+    "timezone": null,
+    "frequency": null,
+    "publish_times": [],
+    "retry_times": [],
+    "start_date": null,
+    "task_id": null,
+    "single_publisher_verified": false,
+    "notification_ref": null,
+    "stop_method": "user_requests_pause"
+  },
+  "archive": {
+    "enabled": false,
+    "required_before_publish": false,
+    "private_target": null
+  },
+  "authorization": {
+    "granted": false,
+    "recorded_at": null,
+    "instruction_ref": null,
+    "scope": {
+      "owner_key": null,
+      "account_id": null,
+      "series": null,
+      "mode": null,
+      "visibility": null,
+      "runtime_id": null,
+      "content_scope": {
+        "source_kind": null,
+        "source_refs": null,
+        "public_scope": null,
+        "editing": null,
+        "missing_media": null,
+        "privacy": null
+      },
+      "schedule_scope": null
+    }
+  },
+  "capabilities": {
+    "source_read": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "media_creation": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "storage_rw": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "publisher_control": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "account_session": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "upload_preview": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "submit_entry": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "scheduler": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "cross_run_reuse": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    },
+    "archive_rw": {
+      "status": "UNKNOWN",
+      "checked_at": null,
+      "evidence_ref": null,
+      "runtime_id": null,
+      "account_id": null
+    }
+  },
+  "budget": {
+    "new_spending_allowed": false,
+    "amount": 0,
+    "currency": null
+  }
+}

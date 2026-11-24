@@ -20,7 +20,7 @@ TERMINAL = {"UNDER_REVIEW", "SUBMITTED_UNDER_REVIEW", "PUBLISHED", "REJECTED", "
 UNCERTAIN = {"SUBMITTING", "UNKNOWN", "SUBMISSION_UNKNOWN", "准备提交", "提交中", "待核实", "提交未知"}
 REQUIRED = ("account_matches", "dedupe_clear", "body_complete", "privacy_pass",
             "image_positions", "images_loaded", "markers_removed", "cover_first",
-            "preview_complete", "public_visibility")
+            "preview_complete")
 
 
 def now():
@@ -218,15 +218,29 @@ def begin_submit(directory, state, checks, date):
     action = decision(state)
     if action != "CONTINUE":
         return {"action": action, "stage": state.get("stage")}
-    timezone = state.get("timezone", "Asia/Shanghai")
+    timezone = state.get("timezone")
+    if not timezone:
+        raise ValueError("Submission needs the configured timezone")
     if date != dt.datetime.now(ZoneInfo(timezone)).date().isoformat():
         raise ValueError("Only the current date in the configured timezone may be submitted")
     check_evidence(directory, state, checks, date)
     if any(checks.get(key) is not True for key in REQUIRED):
         raise ValueError("Not all required platform checks passed")
+    visibility_keys = {"expected_visibility", "observed_visibility", "visibility_matches"}
+    if visibility_keys & checks.keys():
+        visibility = checks.get("expected_visibility")
+        if not isinstance(visibility, str) or not visibility or checks.get("visibility_matches") is not True or checks.get("observed_visibility") != visibility:
+            raise ValueError("Platform visibility differs from the authorized scope")
+        if state.get("visibility") not in (None, visibility):
+            raise ValueError("Ledger visibility differs from current checks")
+    else:
+        # Legacy checks explicitly asserted public visibility; never infer it for new profiles.
+        visibility = "public"
+        if checks.get("public_visibility") is not True or state.get("visibility") not in (None, "public"):
+            raise ValueError("Explicit platform visibility checks are required")
     if checks.get("images_expected", 0) <= 0 or checks.get("images_loaded_count") != checks["images_expected"] or checks["images_expected"] != state.get("images_expected"):
         raise ValueError("Platform image count mismatch")
-    state.update(stage="SUBMITTING", submission_result="准备提交", submission_intent_at=now(), checks=checks)
+    state.update(stage="SUBMITTING", visibility=visibility, submission_result="准备提交", submission_intent_at=now(), checks=checks)
     atomic_json(directory / "进度.json", state)
     return {"action": "SUBMIT_ONCE", "stage": "SUBMITTING"}
 

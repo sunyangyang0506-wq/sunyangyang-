@@ -110,10 +110,10 @@ class WorkflowTests(unittest.TestCase):
 
     def checks(self):
         (self.directory / "preview.jpg").write_bytes(b"test evidence fixture")
-        return dict({key: True for key in w.REQUIRED}, date=DATE, checked_at=w.now(), evidence_file="preview.jpg", images_expected=1, images_loaded_count=1)
+        return dict({key: True for key in w.REQUIRED}, public_visibility=True, date=DATE, checked_at=w.now(), evidence_file="preview.jpg", images_expected=1, images_loaded_count=1)
 
     def test_stale_partial_or_count_mismatched_checks_cannot_submit(self):
-        state = {"date": DATE, "stage": "DRAFT", "images_expected": 1}
+        state = {"date": DATE, "timezone": "Asia/Shanghai", "stage": "DRAFT", "images_expected": 1}
         checks = self.checks()
         checks["privacy_pass"] = "true"
         with self.assertRaises(ValueError):
@@ -133,7 +133,7 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotEqual(w.begin_submit(self.directory, state, {}, DATE)["action"], "SUBMIT_ONCE")
 
     def test_concurrent_runs_grant_only_one_submit_intent(self):
-        w.atomic_json(self.directory / "进度.json", {"date": DATE, "stage": "DRAFT", "images_expected": 1})
+        w.atomic_json(self.directory / "进度.json", {"date": DATE, "timezone": "Asia/Shanghai", "stage": "DRAFT", "images_expected": 1})
         checks = self.directory / "checks.json"
         checks.write_text(json.dumps(self.checks()))
         command = [sys.executable, str(SCRIPT), "begin-submit", "--directory", str(self.directory), "--date", DATE, "--checks", str(checks)]

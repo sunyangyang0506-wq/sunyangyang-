@@ -1,6 +1,6 @@
 # Skills Repository
 
-个人/业务 AI Skill 工程仓库，当前 Repository **V3.7.0**。
+个人/业务 AI Skill 工程仓库，当前 Repository **V3.8.0**。
 
 ## Teach English in China — Job Finder
 
@@ -15,14 +15,14 @@
 - alive-oral-scriptwriter 3.3.1
 - personal-visual-storyteller 3.4.0
 - douyin-persona-audit 1.2.1
-- xiaohongshu-publish-orchestrator 1.10.0
+- xiaohongshu-publish-orchestrator 1.11.0
 
 ## 当前工程能力
 
 - Skill Registry
 - Metadata / Contract Schema
 - 6个输入输出Contract
-- **17个Golden Cases**
+- **21个Golden Cases**
 - Repository Validator
 - Golden Eval Runner
 - 单元/回归测试

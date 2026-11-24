@@ -54,7 +54,7 @@ class GuardTests(unittest.TestCase):
     def test_fresh_checks_cannot_submit_another_day(self):
         for date in ['2000-01-01', '2099-01-01']:
             with self.assertRaisesRegex(ValueError, 'current date'):
-                w.begin_submit(self.d, {'date': date, 'stage':'DRAFT'}, {}, date)
+                w.begin_submit(self.d, {'date': date, 'timezone':'Asia/Shanghai', 'stage':'DRAFT'}, {}, date)
 
     def test_manifest_requires_handoff_metadata(self):
         for key in ['timezone', 'content_version', 'images_expected']:
@@ -67,3 +67,17 @@ class GuardTests(unittest.TestCase):
         for markdown in ['# title private', '| a | b |\n|---|---|\n| private | x |', '# title <Cite ref="private"/>']:
             with self.assertRaisesRegex(ValueError, 'citations'):
                 w.render_markdown(markdown, [])
+
+    def test_submission_does_not_assume_a_new_users_timezone(self):
+        with self.assertRaisesRegex(ValueError, 'configured timezone'):
+            w.begin_submit(self.d, {'date': DATE, 'stage':'DRAFT'}, {}, DATE)
+
+    def test_visibility_follows_explicit_scope_and_rejects_mismatch(self):
+        checks = self.fixture.checks()
+        checks.update(expected_visibility='private', observed_visibility='public', visibility_matches=True)
+        state = {'date':DATE, 'timezone':'Asia/Shanghai', 'stage':'DRAFT', 'images_expected':1}
+        with self.assertRaisesRegex(ValueError, 'visibility'):
+            w.begin_submit(self.d, state, checks, DATE)
+        checks['observed_visibility'] = 'private'
+        self.assertEqual(w.begin_submit(self.d, state, checks, DATE)['action'], 'SUBMIT_ONCE')
+        self.assertEqual(w.read_json(self.d / '进度.json')['visibility'], 'private')
