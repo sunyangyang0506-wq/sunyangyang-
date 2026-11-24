@@ -28,7 +28,7 @@ python3 scripts/brief_workflow.py start --directory "$RUN_DIR" --date "$BRIEF_DA
 python3 scripts/brief_workflow.py prepare --directory "$RUN_DIR" --date "$BRIEF_DATE" --manifest "$MANIFEST" --markdown "$MARKDOWN"
 ```
 
-prepare 优先用 Pillow 生成同尺寸 JPEG，透明区域合成为白底，不复制原 PNG 的文本元数据，也不修改原 PNG。Linux 云环境须在任务使用的 Python 环境安装 Pillow；未安装时仅在确有 sips 的 macOS 使用系统转换，均不可用则停止并说明缺少依赖。脚本逐行处理标题、保留全部来源 URL，表格按列名展开全部单元格；缺图、错序、不完整表格或未转换的专有引用会停止。图像的视觉、身份和隐私仍需逐张查看，平台上传后仍需逐处核对图注。
+prepare 使用 Pillow 生成同尺寸 JPEG，透明区域合成为白底，不复制原 PNG 的文本元数据，也不修改原 PNG。Mac 与 Linux 都须在任务使用的 Python 环境安装 Pillow；缺失则停止并说明依赖，不自动回退到不同验收标准的系统转换。脚本逐行处理标题、保留全部来源 URL，表格按列名展开全部单元格；缺图、错序、不完整表格或未转换的专有引用会停止。图像的视觉、身份和隐私仍需逐张查看，平台上传后仍需逐处核对图注。
 
 ## 提交前原子占用
 
@@ -59,3 +59,7 @@ python3 scripts/brief_workflow.py result --directory "$RUN_DIR" --date "$BRIEF_D
 运行依赖本机开机、任务应用可运行、Chrome 连接与账号会话有效。系统锁屏、扫码或平台设备验证按官方流程交接给本人，不关闭屏幕锁、不保存凭据或绕过验证。自动流程在异常时保存进度并报告；网络或模型执行失败不能假装完成。下一轮从同一记录恢复。
 
 提交后审核中属于已提交，公开需要后台明确状态。后续同一工作流只读复查近期审核中回执并同步变化，不重新提交往期。每次报告区分配置、文件验证、真实提交、公开和计划运行验收。
+
+## Mac 模式补充
+
+已选择 Mac 时优先执行 [Mac 日常执行与验收](mac-runtime.md)。生成端不得在原件可读时自行发布。SCHEDULED、已预约和已发布等旧状态均按已提交处理；不改变标题或版本绕过去重。单命令文件锁不覆盖浏览器全流程，须由唯一串行执行器或 run_locked.py 保护整个运行。代码提交、Mac 安装、调度启用和未来自然运行的后台回执分别记录。

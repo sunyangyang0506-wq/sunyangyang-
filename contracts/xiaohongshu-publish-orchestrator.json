@@ -1,6 +1,6 @@
 {
   "skill": "xiaohongshu-publish-orchestrator",
-  "contract_version": "1.1.0",
+  "contract_version": "1.2.0",
   "inputs": [
     {
       "name": "editorial_brief",
@@ -26,6 +26,11 @@
       "name": "channel_state",
       "required": false,
       "description": "发布通道、登录、二次验证及权限状态。"
+    },
+    {
+      "name": "deployment_config",
+      "required": false,
+      "description": "私有执行配置：唯一发布端、时区、来源、任务、持久目录；Mac 模式云端仅制稿。"
     }
   ],
   "outputs": [
@@ -51,6 +56,9 @@
     "没有可用且已登录的发布通道不得声称已发布",
     "没有真实回执不得推断发布成功",
     "发布失败后不得无限自动重试",
-    "同一日报同一天默认阻止重复发布"
+    "同一日报同一天默认阻止重复发布",
+    "已预约、审核中、已公开和驳回只同步；未知提交先查后台",
+    "生成端不得与 Mac 唯一发布端并行提交",
+    "安装和 CI 通过不能代替本机调度与后台回执验收"
   ]
 }

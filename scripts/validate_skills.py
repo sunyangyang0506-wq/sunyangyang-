@@ -147,6 +147,10 @@ def validate_repository():
     errors += registry_errors
     for name in sorted(metas):
         errors += validate_contract(name)
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for name, meta in metas.items():
+        if not any(name in line and re.search(r"(?<![0-9.])" + re.escape(meta.version) + r"(?![0-9.])", line) for line in readme.splitlines()):
+            errors.append(f"README: missing current version for {name}")
     errors += validate_privacy()
     return errors
 

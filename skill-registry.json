@@ -1,11 +1,11 @@
 {
-  "repository_version": "3.6.0",
+  "repository_version": "3.7.0",
   "schema_version": "1.1.0",
-  "updated_at": "2026-11-22",
+  "updated_at": "2026-11-24",
   "skills": [
     {
       "name": "xiaohongshu-alive-writer",
-      "version": "3.4.0",
+      "version": "3.5.0",
       "path": "skills/xiaohongshu-alive-writer/SKILL.md",
       "contract": "contracts/xiaohongshu-alive-writer.json",
       "evals": "evals/golden-cases.json",
@@ -14,7 +14,7 @@
     },
     {
       "name": "alive-oral-scriptwriter",
-      "version": "3.3.0",
+      "version": "3.3.1",
       "path": "skills/alive-oral-scriptwriter/SKILL.md",
       "contract": "contracts/alive-oral-scriptwriter.json",
       "evals": "evals/golden-cases.json",
@@ -23,7 +23,7 @@
     },
     {
       "name": "personal-visual-storyteller",
-      "version": "3.3.0",
+      "version": "3.4.0",
       "path": "skills/personal-visual-storyteller/SKILL.md",
       "contract": "contracts/personal-visual-storyteller.json",
       "evals": "evals/golden-cases.json",
@@ -32,7 +32,7 @@
     },
     {
       "name": "douyin-persona-audit",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "path": "skills/douyin-persona-audit/SKILL.md",
       "contract": "contracts/douyin-persona-audit.json",
       "evals": "evals/golden-cases.json",
@@ -45,7 +45,7 @@
     },
     {
       "name": "xiaohongshu-publish-orchestrator",
-      "version": "1.9.2",
+      "version": "1.10.0",
       "path": "skills/xiaohongshu-publish-orchestrator/SKILL.md",
       "contract": "contracts/xiaohongshu-publish-orchestrator.json",
       "evals": "evals/golden-cases.json",
@@ -54,7 +54,7 @@
     },
     {
       "name": "publish-china-care-updates",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "path": "skills/publish-china-care-updates/SKILL.md",
       "contract": "contracts/publish-china-care-updates.json",
       "evals": "evals/golden-cases.json",

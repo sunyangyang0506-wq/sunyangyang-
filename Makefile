@@ -4,6 +4,7 @@ validate:
 eval:
 	python3 scripts/eval_golden.py --validate-only
 test:
+	python3 -m unittest discover -s skills/xiaohongshu-publish-orchestrator/tests -p "test_*.py" -v
 	python3 -m unittest discover -s tests -p "test_*.py" -v
 stats:
 	python3 scripts/skill_stats.py

@@ -24,3 +24,8 @@ exports/
 .DS_Store
 .idea/
 .vscode/
+
+# Reproducible build and Python caches
+__pycache__/
+*.pyc
+dist/

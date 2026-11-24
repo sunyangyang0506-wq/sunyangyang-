@@ -14,9 +14,10 @@ import struct
 import subprocess
 import tempfile
 import zlib
+from zoneinfo import ZoneInfo
 
-TERMINAL = {"UNDER_REVIEW", "SUBMITTED_UNDER_REVIEW", "PUBLISHED", "REJECTED"}
-UNCERTAIN = {"SUBMITTING", "UNKNOWN", "SUBMISSION_UNKNOWN", "准备提交"}
+TERMINAL = {"UNDER_REVIEW", "SUBMITTED_UNDER_REVIEW", "PUBLISHED", "REJECTED", "SCHEDULED", "审核中", "已公开", "已发布", "未通过", "已驳回", "已预约", "预约中"}
+UNCERTAIN = {"SUBMITTING", "UNKNOWN", "SUBMISSION_UNKNOWN", "准备提交", "提交中", "待核实", "提交未知"}
 REQUIRED = ("account_matches", "dedupe_clear", "body_complete", "privacy_pass",
             "image_positions", "images_loaded", "markers_removed", "cover_first",
             "preview_complete", "public_visibility")
@@ -46,7 +47,7 @@ def atomic_json(path, data):
 
 def decision(state):
     values = {state.get("stage"), state.get("submission_result"), state.get("review_status")}
-    if values & (TERMINAL | {"审核中", "已公开", "未通过"}):
+    if values & (TERMINAL):
         return "SYNC_ONLY"
     if values & UNCERTAIN:
         return "VERIFY_PLATFORM_FIRST"
@@ -95,11 +96,7 @@ def upload_jpeg(source, destination):
     try:
         from PIL import Image
     except ImportError:
-        if not shutil.which("sips"):
-            raise ValueError("JPEG conversion needs Pillow on this host; install it in the task's Python environment")
-        subprocess.run(["sips", "-s", "format", "jpeg", str(source), "--out", str(destination)],
-                       check=True, capture_output=True)
-        return "sips"
+        raise ValueError("JPEG conversion needs Pillow on this host; install it in the task's Python environment")
     fd, name = tempfile.mkstemp(dir=destination.parent, suffix=".jpg")
     os.close(fd)
     try:
@@ -123,6 +120,9 @@ def upload_jpeg(source, destination):
 def validate_manifest(directory, date, manifest):
     if manifest.get("date") != date:
         raise ValueError("Manifest date differs from requested date")
+    if not manifest.get("content_version") or not manifest.get("timezone") or "images_expected" not in manifest:
+        raise ValueError("Manifest needs content_version, timezone and images_expected")
+    ZoneInfo(manifest["timezone"])
     images = manifest.get("images", manifest.get("image_order", []))
     if not images:
         raise ValueError("Image manifest is empty")
@@ -130,7 +130,7 @@ def validate_manifest(directory, date, manifest):
         raise ValueError("Image count differs from manifest")
     seen, result = set(), []
     for number, item in enumerate(images, 1):
-        if item.get("number") != number or not item.get("caption"):
+        if item.get("number") != number or not item.get("caption") or not item.get("section") or not all(item.get(k) for k in ("width", "height")):
             raise ValueError("Image sequence or caption is incomplete")
         file = local_file(directory, item["file"])
         if file in seen:
@@ -140,6 +140,8 @@ def validate_manifest(directory, date, manifest):
         if sha != item.get("sha256"):
             raise ValueError(f"Image hash differs: {file.name}")
         width, height = png_dimensions(file)
+        if any(key in item and item[key] != actual for key, actual in (("width", width), ("height", height))):
+            raise ValueError(f"Image dimensions differ: {file.name}")
         result.append(dict(item, width=width, height=height))
     return result
 
@@ -156,6 +158,8 @@ def table_cells(line):
 
 
 def render_markdown(markdown, images):
+    if "" in markdown or "<Cite" in markdown:
+        raise ValueError("Resolve proprietary citations before import")
     lines, blocks, found, i = markdown.splitlines(), [], [], 0
     while i < len(lines):
         line = lines[i].strip()
@@ -206,13 +210,17 @@ def check_evidence(directory, state, checks, date):
     age = (dt.datetime.now(dt.timezone.utc) - stamp).total_seconds()
     if not 0 <= age <= 900:
         raise ValueError("Platform checks are stale")
-    local_file(directory, checks["evidence_file"])
+    if not local_file(directory, checks["evidence_file"]).stat().st_size:
+        raise ValueError("Platform evidence is empty")
 
 
 def begin_submit(directory, state, checks, date):
     action = decision(state)
     if action != "CONTINUE":
         return {"action": action, "stage": state.get("stage")}
+    timezone = state.get("timezone", "Asia/Shanghai")
+    if date != dt.datetime.now(ZoneInfo(timezone)).date().isoformat():
+        raise ValueError("Only the current date in the configured timezone may be submitted")
     check_evidence(directory, state, checks, date)
     if any(checks.get(key) is not True for key in REQUIRED):
         raise ValueError("Not all required platform checks passed")
@@ -231,7 +239,7 @@ def main():
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--markdown", type=Path)
     parser.add_argument("--checks", type=Path)
-    parser.add_argument("--result", choices=["UNDER_REVIEW", "PUBLISHED", "REJECTED", "UNKNOWN"])
+    parser.add_argument("--result", choices=["UNDER_REVIEW", "PUBLISHED", "REJECTED", "SCHEDULED", "UNKNOWN"])
     parser.add_argument("--evidence")
     args = parser.parse_args()
     dt.date.fromisoformat(args.date)
@@ -256,7 +264,7 @@ def main():
                 manifest = read_json(args.manifest) if args.manifest else state
                 images = validate_manifest(directory, args.date, manifest)
                 markdown = args.markdown.read_text(encoding="utf-8")
-                if args.date not in markdown.splitlines()[0]:
+                if not markdown.strip() or args.date not in markdown.splitlines()[0]:
                     raise ValueError("Markdown lacks the explicit original date in its title")
                 rendered = render_markdown(markdown, images)
                 derived = []
@@ -267,7 +275,7 @@ def main():
                                     "sha256": hashlib.sha256(dest.read_bytes()).hexdigest(),
                                     "conversion_backend": backend})
                 (directory / "发布正文.html").write_text(rendered, encoding="utf-8")
-                state.update(stage="MEDIA_VERIFIED", images_expected=len(images), image_order=images, upload_derivatives=derived)
+                state.update(stage="MEDIA_VERIFIED", timezone=manifest["timezone"], content_version=manifest["content_version"], markdown_sha256=hashlib.sha256(markdown.encode("utf-8")).hexdigest(), images_expected=len(images), image_order=images, upload_derivatives=derived)
                 atomic_json(path, state)
                 output = {"action": "CONTINUE", "stage": "MEDIA_VERIFIED", "images": len(images)}
         elif args.command == "begin-submit":
@@ -288,11 +296,11 @@ def main():
             if not args.result or not args.evidence:
                 raise ValueError("Result and evidence are required")
             local_file(directory, args.evidence)
-            if state.get("stage") == "PUBLISHED" and args.result != "PUBLISHED":
+            if {state.get("stage"), state.get("submission_result"), state.get("review_status")} & {"PUBLISHED", "已公开", "已发布"} and args.result != "PUBLISHED":
                 raise ValueError("Do not downgrade an explicitly published receipt")
             if decision(state) == "SYNC_ONLY" and args.result == "UNKNOWN":
                 raise ValueError("Do not replace a confirmed receipt with uncertainty")
-            state.update(stage=args.result, submission_result=args.result, review_status={"UNDER_REVIEW": "审核中", "PUBLISHED": "已公开", "REJECTED": "未通过", "UNKNOWN": "待核实"}[args.result], submission_evidence=args.evidence, result_checked_at=now())
+            state.update(stage=args.result, submission_result=args.result, review_status={"UNDER_REVIEW": "审核中", "PUBLISHED": "已公开", "REJECTED": "未通过", "UNKNOWN": "待核实", "SCHEDULED": "已预约"}[args.result], submission_evidence=args.evidence, result_checked_at=now())
             atomic_json(path, state)
             output = {"stage": args.result, "action": decision(state)}
         print(json.dumps(output, ensure_ascii=False))

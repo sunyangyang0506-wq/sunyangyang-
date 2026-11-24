@@ -1,12 +1,15 @@
 ---
 name: publish-china-care-updates
-version: 1.1.0
+version: 1.1.1
 description: 监测赴华就医服务与中国重大医学进展，核验药物、研究和医院服务信息，生成英文 X 图文和字幕视频，向已授权的 X 账号发布，并追踪主动咨询和机构合作商机。用于每日自动获客、英文医疗资讯运营、单期制作、重试发布或复盘线索。
 ---
 
 # Publish China care updates on X
 
 帮助海外读者弄清在中国哪里可以获得可靠的就医信息、研究进展到了哪一步，以及下一步应该向谁核实。使用英文对外发布，使用中文向运营者报告。账号以独立资讯身份发言。先读 [信息源与证据](references/editorial.md)、[发布与咨询](references/operations.md)。[上海就医指南](references/example.json) 和 [靶向药监管公告](references/clinical-example.json) 都是可运行的演练样稿。
+
+## 渠道隔离与重复执行
+X 与小红书分别维护私有渠道配置、唯一执行者和回执。小红书选择 Mac 执行不代表 X 已绑定或已启用；不得复用另一平台的登录、任务或成功状态。每个幂等键包含 platform/account/series/date，内容版本另记，改标题或封面不能自动绕过去重。已预约、审核中或公开只同步；SUBMITTING/UNKNOWN 先查所选入口和平台，无法排除提交就保留阻塞。原始中文简报是线索与版本依据，英文衍生内容不覆盖源包。私有资料只进入已授权私有目录，公开仓库只存通用工具。
 
 ## 每期执行
 
