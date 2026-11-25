@@ -1,6 +1,6 @@
 interface:
   display_name: 小红书笔记全流程发布
-  short_description: 首次集中授权，从栏目选题、写稿配图到自动发布与审核核验
+  short_description: 从数据复盘到写稿、简洁封面、自动发布和审核核验
   default_prompt: 用 $xiaohongshu-publish-orchestrator 把这组素材制作成小红书笔记。
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
